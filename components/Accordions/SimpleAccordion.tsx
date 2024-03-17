@@ -1,12 +1,18 @@
-import * as React from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { FaqsType } from "dh-marvel/components/faqs/faqsData";
+// import * as React from "react";
+// import Accordion from "@mui/material/Accordion";
+import Accordion from '@mui/material/Accordion'
+// import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionSummary from '@mui/material/AccordionSummary'
+// import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionDetails from '@mui/material/AccordionDetails'
+// import Typography from "@mui/material/Typography";
+import Typography from '@mui/material/Typography'
+// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+// import { FaqsType } from "dh-marvel/components/faqs/faqsData";
+import { type FaqsType } from '../../../components/faqs/faqsData'
 
-export default function SimpleAccordion({ id, question, answer }: FaqsType) {
+export default function SimpleAccordion ({ id, question, answer }: FaqsType) {
   return (
     <div key={id}>
       <Accordion>
@@ -15,13 +21,13 @@ export default function SimpleAccordion({ id, question, answer }: FaqsType) {
           aria-controls="panel1a-content"
           id="panel1a-header"
           sx={{
-            margin: "5px",
+            margin: '5px'
           }}
         >
           <Typography
             sx={{
-              fontWeight: "600",
-              color: "#305f8f  ",
+              fontWeight: '600',
+              color: '#305f8f  '
             }}
           >
             {question}
@@ -32,5 +38,5 @@ export default function SimpleAccordion({ id, question, answer }: FaqsType) {
         </AccordionDetails>
       </Accordion>
     </div>
-  );
+  )
 }
