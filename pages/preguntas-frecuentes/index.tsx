@@ -1,12 +1,8 @@
 // import React from "react";
 import { type FaqsType } from 'dh-marvel/components/faqs/faqsData';
-// import { type FaqsType } from '../../components/faqs/faqsData'
 import SimpleAccordion from 'dh-marvel/components/Accordions/SimpleAccordion';
-// import SimpleAccordion from '../../components/Accordions/SimpleAccordion'
 import BodySingle from 'dh-marvel/components/layouts/body/single/body-single';
-// import BodySingle from '../../components/layouts/body/single/body-single'
 import LayoutGeneral from 'dh-marvel/components/layouts/layout-general';
-// import LayoutGeneral from '../../components/layouts/layout-general'
 import Head from 'next/head';
 
 export const getStaticProps = async () => {

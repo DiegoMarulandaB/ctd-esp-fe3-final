@@ -1,16 +1,10 @@
-// import * as React from "react";
-// import Accordion from "@mui/material/Accordion";
 import Accordion from '@mui/material/Accordion'
-// import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionSummary from '@mui/material/AccordionSummary'
-// import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionDetails from '@mui/material/AccordionDetails'
-// import Typography from "@mui/material/Typography";
 import Typography from '@mui/material/Typography'
-// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { FaqsType } from "dh-marvel/components/faqs/faqsData";
-// import { type FaqsType } from '../../../components/faqs/faqsData'
+
 
 export default function SimpleAccordion ({ id, question, answer }: FaqsType) {
   return (
