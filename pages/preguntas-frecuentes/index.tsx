@@ -1,22 +1,22 @@
-import { type FaqsType } from 'dh-marvel/components/faqs/faqsData';
-import SimpleAccordion from 'dh-marvel/components/Accordions/SimpleAccordion';
-import BodySingle from 'dh-marvel/components/layouts/body/single/body-single';
-import LayoutGeneral from 'dh-marvel/components/layouts/layout-general';
-import Head from 'next/head';
+import { type FaqsType } from 'dh-marvel/components/faqs/faqsData'
+import SimpleAccordion from 'dh-marvel/components/Accordions/SimpleAccordion'
+import BodySingle from 'dh-marvel/components/layouts/body/single/body-single'
+import LayoutGeneral from 'dh-marvel/components/layouts/layout-general'
+import Head from 'next/head'
 
 export const getStaticProps = async () => {
-  const res = await fetch('https://aplicacionmarvel.vercel.app/api/faq');
-  const data: FaqsType[] = await res.json();
+  const res = await fetch('https://aplicacionmarvel.vercel.app/api/faq')
+  const data: FaqsType[] = await res.json()
 
   return {
     props: {
-      data,
-    },
-  };
-};
+      data
+    }
+  }
+}
 
 interface FaqProps {
-  data: FaqsType[];
+  data: FaqsType[]
 }
 
 const Faq: React.FC<FaqProps> = ({ data }) => {
@@ -29,12 +29,12 @@ const Faq: React.FC<FaqProps> = ({ data }) => {
       <LayoutGeneral>
         <BodySingle title="Preguntas frecuentes">
           {data.map((faq) => {
-            return <SimpleAccordion key={faq.id} id={faq.id} question={faq.question} answer={faq.answer} />;
+            return <SimpleAccordion key={faq.id} id={faq.id} question={faq.question} answer={faq.answer} />
           })}
         </BodySingle>
       </LayoutGeneral>
     </>
-  );
-};
+  )
+}
 
-export default Faq;
+export default Faq
