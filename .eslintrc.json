@@ -5,13 +5,12 @@
     "node": true
   },
   "extends": [
-    "standard-with-typescript"
-    // "plugin:react/recommended",
-    // "plugin:react/recommended",
-    // "plugin:import/errors",
-    // "plugin:import/warnings"
-    // "plugin:import/typescript",
-    // "plugin:import/resolver"
+    "standard-with-typescript",
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:import/resolver"
   ],
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -19,7 +18,7 @@
     "parser": "@typescript-eslint/parser",
     "project": "./tsconfig.json"
   },
-  "plugins": ["react"],
+  "plugins": ["react", "import"],
   "rules": {
     "@typescript-eslint/indent": ["error", 2],
     "@typescript-eslint/no-unused-vars": "error",
@@ -28,5 +27,13 @@
     "@typescript-eslint/semi": "off",
     "no-unexpected-multiline": "error",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  },
+  "settings": {
+    "import/resolver": {
+      // Configuración del resolver, por ejemplo:
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }
