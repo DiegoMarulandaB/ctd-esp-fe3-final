@@ -9,8 +9,8 @@ import AccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
 // import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-// import { FaqsType } from "dh-marvel/components/faqs/faqsData";
-import { type FaqsType } from '../../../components/faqs/faqsData'
+import { FaqsType } from "dh-marvel/components/faqs/faqsData";
+// import { type FaqsType } from '../../../components/faqs/faqsData'
 
 export default function SimpleAccordion ({ id, question, answer }: FaqsType) {
   return (
