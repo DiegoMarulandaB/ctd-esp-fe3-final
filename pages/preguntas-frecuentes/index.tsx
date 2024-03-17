@@ -6,9 +6,7 @@ import LayoutGeneral from "dh-marvel/components/layouts/layout-general";
 import Head from "next/head";
 
 export const getStaticProps = async () => {
-  const res = await fetch(
-    `https://vercel.com/diegomarulandab/aplicacionmarvel/api/faq`
-  );
+  const res = await fetch(`https://aplicacionmarvel.vercel.app/api/faq`);
   const data: FaqsType[] = await res.json();
 
   return {
