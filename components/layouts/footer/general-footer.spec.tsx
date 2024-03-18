@@ -1,5 +1,9 @@
+// usar extensión Better Comments
+/**
+ *  * se modifica la importación dh-marvel ya que genera este error unable to resolve path to module
+ */
 import { render, screen } from '@testing-library/react'
-import GeneralFooter from 'dh-marvel/components/layouts/footer/general-footer.component'
+import GeneralFooter from '../../../components/layouts/footer/general-footer.component'
 
 describe('GeneralFooter', () => {
   describe('when rendering default layout', () => {

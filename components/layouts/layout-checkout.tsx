@@ -1,9 +1,14 @@
+// usar extensión Better Comments
+/**
+ *  * se modifica la importación dh-marvel ya que genera este error unable to resolve path to module
+*/
+
 import * as React from 'react'
 import { type FC, type PropsWithChildren } from 'react'
 import { Stack } from '@mui/material'
 import Box from '@mui/material/Box'
-import GeneralHeader from 'dh-marvel/components/layouts/header/general-header.component'
-import GeneralFooter from 'dh-marvel/components/layouts/footer/general-footer.component'
+import GeneralHeader from '../../components/layouts/header/general-header.component'
+import GeneralFooter from '../../components/layouts/footer/general-footer.component'
 
 const LayoutCheckout: FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
   return (<>

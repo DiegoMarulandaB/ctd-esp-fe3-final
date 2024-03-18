@@ -1,9 +1,14 @@
+// usar extensión Better Comments
+/**
+ *  * se modifica la importación dh-marvel ya que genera este error unable to resolve path to module
+ */
+
 import { rest } from 'msw'
-import comics from 'dh-marvel/test/mocks/comics'
-import character from 'dh-marvel/test/mocks/character'
-import comic from 'dh-marvel/test/mocks/comic'
-import comicsWithOffsetAndLimit from 'dh-marvel/test/mocks/comicsWithOffsetAndLimit'
-import comicWithoutStock from 'dh-marvel/test/mocks/comicWithoutStock'
+import comics from '../test/mocks/comic'
+import character from '../test/mocks/character'
+// import comic from '../test/mocks/comic'
+import comicsWithOffsetAndLimit from '../test/mocks/comicsWithOffsetAndLimit'
+import comicWithoutStock from '../test/mocks/comicWithoutStock'
 
 const handlers = [
   rest.get('/marvel/api/comics', async (req, res, ctx) => {

@@ -1,5 +1,10 @@
+// usar extensión Better Comments
+/**
+ *  * se modifica la importación dh-marvel ya que genera este error unable to resolve path to module
+ */
+
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { type CheckoutInput } from 'dh-marvel/features/checkout/checkout.types'
+import { type CheckoutInput } from '../../features/checkout/checkout.types'
 import {
   ERROR_CARD_DATA_INCORRECT,
   ERROR_CARD_WITHOUT_AUTHORIZATION,
@@ -7,7 +12,7 @@ import {
   ERROR_INCORRECT_ADDRESS,
   ERROR_METHOD_NOT_ALLOWED,
   ERROR_SERVER
-} from 'dh-marvel/services/checkout/checkout.errors'
+} from '../../services/checkout/checkout.errors'
 
 const serverError = 'error'
 export const invalidAddress = 'invalid'
@@ -15,12 +20,14 @@ export const validCard = '4242 4242 4242 4242'.replace(' ', '')
 export const withoutFundsCard = '4111 4111 4111 4111'.replace(' ', '')
 export const withoutAuthorizationCard = '4000 4000 4000 4000'.replace(' ', '')
 
-type Data = {
-  data: any
-} | {
-  error: string
-  message: string
-}
+type Data =
+  | {
+    data: any
+  }
+  | {
+    error: string
+    message: string
+  };
 
 export default function handler (req: NextApiRequest, res: NextApiResponse<Data>) {
   if (req.method !== 'POST') {

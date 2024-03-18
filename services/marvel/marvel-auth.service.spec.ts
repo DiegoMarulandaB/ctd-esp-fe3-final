@@ -1,4 +1,9 @@
-import { generateAuthenticationString } from 'dh-marvel/services/marvel/marvel-auth.service'
+// usar extensión Better Comments
+/**
+ *  * se modifica la importación dh-marvel ya que genera este error unable to resolve path to module
+ */
+
+import { generateAuthenticationString } from '../../services/marvel/marvel-auth.service'
 
 describe('MarvelAuthService', () => {
   beforeEach(() => {
