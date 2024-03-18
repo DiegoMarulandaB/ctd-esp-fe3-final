@@ -26,7 +26,7 @@
     "semi": ["error", "never"],
     "@typescript-eslint/semi": "off",
     "no-unexpected-multiline": "error",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }]
   },
   "settings": {
     "react": {
