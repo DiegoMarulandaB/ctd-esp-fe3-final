@@ -27,13 +27,16 @@
     "@typescript-eslint/semi": "off",
     "no-unexpected-multiline": "error",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  },
+  "settings": {
+    "import/resolver": {
+      // Configuración del resolver
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
+      "react": {
+        "version": "detect"
+      }
+    }
   }
-  // "settings": {
-  //   "import/resolver": {
-  //     // Configuración del resolver
-  //     "node": {
-  //       "extensions": [".js", ".jsx", ".ts", ".tsx"]
-  //     }
-  //   }
-  // }
 }

@@ -82,6 +82,14 @@
     ],
     "env": {
       "jest": true
+    },
+    "plugins": [
+      "react"
+    ],
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
     }
   },
   "jest": {
