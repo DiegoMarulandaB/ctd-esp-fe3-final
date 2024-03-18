@@ -1,7 +1,12 @@
-import { type FaqsType } from 'dh-marvel/components/faqs/faqsData'
-import SimpleAccordion from 'dh-marvel/components/Accordions/SimpleAccordion'
-import BodySingle from 'dh-marvel/components/layouts/body/single/body-single'
-import LayoutGeneral from 'dh-marvel/components/layouts/layout-general'
+// usar extensión Better Comments
+/**
+ *  * se modifica la importación dh-marvel ya que genera este error unable to resolve path to module
+ */
+
+import { type FaqsType } from '../../components/faqs/faqsData'
+import SimpleAccordion from '../../components/Accordions/SimpleAccordion'
+import BodySingle from '../../components/layouts/body/single/body-single'
+import LayoutGeneral from '../../components/layouts/layout-general'
 import Head from 'next/head'
 
 export const getStaticProps = async () => {

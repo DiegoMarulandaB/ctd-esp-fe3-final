@@ -4,9 +4,9 @@
  */
 
 import { rest } from 'msw'
-import comics from '../test/mocks/comic'
+import comics from '../test/mocks/comics'
 import character from '../test/mocks/character'
-// import comic from '../test/mocks/comic'
+import comic from '../test/mocks/comic'
 import comicsWithOffsetAndLimit from '../test/mocks/comicsWithOffsetAndLimit'
 import comicWithoutStock from '../test/mocks/comicWithoutStock'
 
