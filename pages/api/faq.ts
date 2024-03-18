@@ -13,6 +13,7 @@ import { faqsData } from '../../components/faqs/faqsData'
 //   }
 // }
 
+// refactor
 export default function handlers (req: NextApiRequest, res: NextApiResponse): void {
   if (req.method === 'GET') {
     res.status(200).json(faqsData)
