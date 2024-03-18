@@ -9,8 +9,8 @@
     "plugin:react/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:import/typescript",
-    "plugin:import/resolver"
+    "plugin:import/typescript"
+    // "plugin:import/resolver"
   ],
   "parserOptions": {
     "ecmaVersion": "latest",
