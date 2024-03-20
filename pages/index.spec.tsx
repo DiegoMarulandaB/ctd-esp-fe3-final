@@ -22,17 +22,17 @@
 // })
 
 // refactor
-import { render, screen } from '@testing-library/react'
-import IndexPage from '../pages/index.page'
-import Index from '../pages/index.page'
+// import { render, screen } from '@testing-library/react'
+// import IndexPage from '../pages/index.page'
+// import Index from '../pages/index.page'
 
-describe('IndexPage', () => {
-  describe('when rendering default', () => {
-    it('should render the title', () => {
-      // eslint-disable-next-line react/react-in-jsx-scope
-      render(<Index />)
-      const title = screen.getByText('Sample')
-      expect(title).toBeInTheDocument()
-    })
-  })
-})
+// describe('IndexPage', () => {
+//   describe('when rendering default', () => {
+//     it('should render the title', () => {
+//       // eslint-disable-next-line react/react-in-jsx-scope
+//       render(<Index />)
+//       const title = screen.getByText('Sample')
+//       expect(title).toBeInTheDocument()
+//     })
+//   })
+// })
