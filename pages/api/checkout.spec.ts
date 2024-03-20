@@ -1,11 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-confusing-void-expression */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/await-thenable */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
-// usar extensión Better Comments
-/**
- *  * se modifica la importación dh-marvel ya que genera este error unable to resolve path to module
- */
 import { createMocks } from 'node-mocks-http'
 import handleCheckout, {
   invalidAddress,
@@ -31,9 +27,12 @@ describe('Checkout', () => {
         method: 'POST',
         body: order
       })
+      // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
       await handleCheckout(req, res)
       expect(res._getStatusCode()).toBe(200)
-      expect(JSON.parse(res._getData())).toEqual(expect.objectContaining({ data: order }))
+      expect(JSON.parse(res._getData())).toEqual(
+        expect.objectContaining({ data: order })
+      )
     })
   })
   describe('when sending a non POST request', () => {
@@ -43,7 +42,9 @@ describe('Checkout', () => {
       })
       await handleCheckout(req, res)
       expect(res._getStatusCode()).toBe(405)
-      expect(JSON.parse(res._getData())).toEqual(expect.objectContaining(ERROR_METHOD_NOT_ALLOWED))
+      expect(JSON.parse(res._getData())).toEqual(
+        expect.objectContaining(ERROR_METHOD_NOT_ALLOWED)
+      )
     })
   })
   describe('when sending an invalid address', () => {
@@ -54,7 +55,9 @@ describe('Checkout', () => {
       })
       await handleCheckout(req, res)
       expect(res._getStatusCode()).toBe(400)
-      expect(JSON.parse(res._getData())).toEqual(expect.objectContaining(ERROR_INCORRECT_ADDRESS))
+      expect(JSON.parse(res._getData())).toEqual(
+        expect.objectContaining(ERROR_INCORRECT_ADDRESS)
+      )
     })
   })
   describe('when sending an invalid form', () => {
@@ -65,7 +68,9 @@ describe('Checkout', () => {
       })
       await handleCheckout(req, res)
       expect(res._getStatusCode()).toBe(500)
-      expect(JSON.parse(res._getData())).toEqual(expect.objectContaining(ERROR_SERVER))
+      expect(JSON.parse(res._getData())).toEqual(
+        expect.objectContaining(ERROR_SERVER)
+      )
     })
   })
   describe('when sending a card without funds', () => {
@@ -76,7 +81,9 @@ describe('Checkout', () => {
       })
       await handleCheckout(req, res)
       expect(res._getStatusCode()).toBe(400)
-      expect(JSON.parse(res._getData())).toEqual(expect.objectContaining(ERROR_CARD_WITHOUT_FUNDS))
+      expect(JSON.parse(res._getData())).toEqual(
+        expect.objectContaining(ERROR_CARD_WITHOUT_FUNDS)
+      )
     })
   })
   describe('when sending a card without authorization', () => {
@@ -87,7 +94,9 @@ describe('Checkout', () => {
       })
       await handleCheckout(req, res)
       expect(res._getStatusCode()).toBe(400)
-      expect(JSON.parse(res._getData())).toEqual(expect.objectContaining(ERROR_CARD_WITHOUT_AUTHORIZATION))
+      expect(JSON.parse(res._getData())).toEqual(
+        expect.objectContaining(ERROR_CARD_WITHOUT_AUTHORIZATION)
+      )
     })
   })
   describe('when sending a card with invalid data', () => {
@@ -98,7 +107,9 @@ describe('Checkout', () => {
       })
       await handleCheckout(req, res)
       expect(res._getStatusCode()).toBe(400)
-      expect(JSON.parse(res._getData())).toEqual(expect.objectContaining(ERROR_CARD_DATA_INCORRECT))
+      expect(JSON.parse(res._getData())).toEqual(
+        expect.objectContaining(ERROR_CARD_DATA_INCORRECT)
+      )
     })
   })
 })

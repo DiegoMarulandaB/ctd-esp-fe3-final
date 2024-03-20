@@ -1,8 +1,3 @@
-// usar extensión Better Comments
-/**
- *  * se modifica la importación dh-marvel ya que genera este error unable to resolve path to module
- */
-
 import { getCharacter, getComic, getComics } from '../../services/marvel/marvel.service'
 import comics from '../../test/mocks/comics'
 import character from '../../test/mocks/character'

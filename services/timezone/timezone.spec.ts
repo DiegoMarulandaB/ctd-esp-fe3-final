@@ -1,4 +1,3 @@
-// este import vino incompleto al realizar la clonación
 // import ''
 
 describe('Timezones', () => {

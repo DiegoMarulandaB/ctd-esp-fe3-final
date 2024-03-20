@@ -1,14 +1,9 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/display-name */
-// usar extensión Better Comments
-/**
- *  * se modifica la importación dh-marvel ya que genera este error unable to resolve path to module
- */
-
 import { render, screen } from '@testing-library/react'
 import LayoutGeneral from '../../components/layouts/layout-general'
 
-jest.mock('../../components/layouts/header/general-header.component', () => () => {
+jest.mock('dh-marvel/components/layouts/header/general-header.component', () => () => {
   return <div>Header</div>
 })
 jest.mock('dh-marvel/components/layouts/footer/general-footer.component', () => () => {
@@ -18,29 +13,17 @@ jest.mock('dh-marvel/components/layouts/footer/general-footer.component', () => 
 describe('LayoutGeneral', () => {
   describe('when rendering default', () => {
     it('should render the children', () => {
-      render(
-        <LayoutGeneral>
-          <p>children</p>
-        </LayoutGeneral>
-      )
+      render(<LayoutGeneral><p>children</p></LayoutGeneral>)
       const children = screen.getByText('children')
       expect(children).toBeInTheDocument()
     })
     it('should render the header', () => {
-      render(
-        <LayoutGeneral>
-          <p>children</p>
-        </LayoutGeneral>
-      )
+      render(<LayoutGeneral><p>children</p></LayoutGeneral>)
       const header = screen.getByText('Header')
       expect(header).toBeInTheDocument()
     })
     it('should render the footer', () => {
-      render(
-        <LayoutGeneral>
-          <p>children</p>
-        </LayoutGeneral>
-      )
+      render(<LayoutGeneral><p>children</p></LayoutGeneral>)
       const footer = screen.getByText('Footer')
       expect(footer).toBeInTheDocument()
     })

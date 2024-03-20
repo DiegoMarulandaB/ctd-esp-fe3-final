@@ -53,7 +53,7 @@ export default function SimpleAccordion ({ id, question, answer }: FaqsType): JS
           sx={{
             margin: '5px'
           }}
-        // eslint-disable-next-line react/jsx-no-comment-textnodes
+          // eslint-disable-next-line react/jsx-no-comment-textnodes
         >
           // eslint-disable-next-line react/react-in-jsx-scope
           <Typography

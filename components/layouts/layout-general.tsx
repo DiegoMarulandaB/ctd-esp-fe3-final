@@ -1,8 +1,3 @@
-// usar extensión Better Comments
-/**
- *  * se modifica la importación dh-marvel ya que genera este error unable to resolve path to module
- */
-
 import * as React from 'react'
 import { type FC, type PropsWithChildren } from 'react'
 import { Stack } from '@mui/material'
@@ -11,16 +6,15 @@ import GeneralHeader from '../../components/layouts/header/general-header.compon
 import GeneralFooter from '../../components/layouts/footer/general-footer.component'
 
 const LayoutGeneral: FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
-  return (
-    <>
-      <Stack direction={'column'} height={'100%'}>
-        <GeneralHeader />
-        <Box display={'flex'} flexGrow={1} justifyContent={'center'}>
-          {children}
-        </Box>
-        <GeneralFooter />
-      </Stack>
-    </>
+  return (<>
+    <Stack direction={'column'} height={'100%'}>
+      <GeneralHeader />
+      <Box display={'flex'} flexGrow={1} justifyContent={'center'}>
+        {children}
+      </Box>
+      <GeneralFooter />
+    </Stack>
+  </>
   )
 }
 export default LayoutGeneral
