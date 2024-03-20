@@ -1,3 +1,5 @@
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/display-name */
 // usar extensión Better Comments
 /**
  *  * se modifica la importación dh-marvel ya que genera este error unable to resolve path to module

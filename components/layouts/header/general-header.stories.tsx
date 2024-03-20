@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/consistent-type-assertions */
 // usar extensión Better Comments
 /**
  *  * se modifica la importación dh-marvel ya que genera este error unable to resolve path to module
