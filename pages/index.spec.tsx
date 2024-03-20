@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable import/no-duplicates */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // usar extensión Better Comments
@@ -12,7 +13,6 @@ import Index from '../pages/index.page'
 describe('IndexPage', () => {
   describe('when rendering default', () => {
     it('should render the title', () => {
-      // eslint-disable-next-line react/react-in-jsx-scope
       render(<Index />)
       const title = screen.getByText('Sample')
       expect(title).toBeInTheDocument()
