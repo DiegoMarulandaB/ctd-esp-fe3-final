@@ -6,6 +6,22 @@
  *  * se modifica la importación dh-marvel ya que genera este error unable to resolve path to module
  */
 
+// import { render, screen } from '@testing-library/react'
+// import IndexPage from '../pages/index.page'
+// import Index from '../pages/index.page'
+
+// describe('IndexPage', () => {
+//   describe('when rendering default', () => {
+//     it('should render the title', () => {
+//       // eslint-disable-next-line react/react-in-jsx-scope
+//       render(<Index />)
+//       const title = screen.getByText('Sample')
+//       expect(title).toBeInTheDocument()
+//     })
+//   })
+// })
+
+// refactor
 import { render, screen } from '@testing-library/react'
 import IndexPage from '../pages/index.page'
 import Index from '../pages/index.page'
@@ -13,7 +29,6 @@ import Index from '../pages/index.page'
 describe('IndexPage', () => {
   describe('when rendering default', () => {
     it('should render the title', () => {
-      // eslint-disable-next-line react/react-in-jsx-scope
       render(<Index />)
       const title = screen.getByText('Sample')
       expect(title).toBeInTheDocument()
