@@ -1,10 +1,12 @@
+/* eslint-disable import/no-duplicates */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // usar extensión Better Comments
 /**
  *  * se modifica la importación dh-marvel ya que genera este error unable to resolve path to module
  */
 
 import { render, screen } from '@testing-library/react'
-// import IndexPage from '../pages/index.page'
+import IndexPage from '../pages/index.page'
 import Index from '../pages/index.page'
 
 describe('IndexPage', () => {
