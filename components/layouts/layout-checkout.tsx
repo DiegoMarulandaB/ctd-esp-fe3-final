@@ -10,19 +10,33 @@ import Box from '@mui/material/Box'
 import GeneralHeader from '../../components/layouts/header/general-header.component'
 import GeneralFooter from '../../components/layouts/footer/general-footer.component'
 
-const LayoutCheckout: FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
-  return (
-    <>
-      <Stack direction={'column'} height={'100%'}>
-        <GeneralHeader variant={'simple'} />
-        <Box display={'flex'} flexGrow={1}>
-          {children}
-        </Box>
-        <GeneralFooter />
-      </Stack>
-    </>
-  )
-}
-export default LayoutCheckout
+// const LayoutCheckout: FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
+//   return (
+//     <>
+//       <Stack direction={'column'} height={'100%'}>
+//         <GeneralHeader variant={'simple'} />
+//         <Box display={'flex'} flexGrow={1}>
+//           {children}
+//         </Box>
+//         <GeneralFooter />
+//       </Stack>
+//     </>
+//   )
+// }
+// export default LayoutCheckout
 
 // refactor
+
+const LayoutCheckout: FC<PropsWithChildren> = ({ children }: PropsWithChildren): JSX.Element => (
+  <>
+    <Stack direction={'column'} height={'100%'}>
+      <GeneralHeader variant={'simple'} />
+      <Box display={'flex'} flexGrow={1}>
+        {children}
+      </Box>
+      <GeneralFooter />
+    </Stack>
+  </>
+)
+
+export default LayoutCheckout
