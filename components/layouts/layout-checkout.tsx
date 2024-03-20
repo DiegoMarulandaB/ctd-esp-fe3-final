@@ -11,15 +11,18 @@ import GeneralHeader from '../../components/layouts/header/general-header.compon
 import GeneralFooter from '../../components/layouts/footer/general-footer.component'
 
 const LayoutCheckout: FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
-  return (<>
-    <Stack direction={'column'} height={'100%'}>
-      <GeneralHeader variant={'simple'}/>
-      <Box display={'flex'} flexGrow={1}>
-        {children}
-      </Box>
-      <GeneralFooter />
-    </Stack>
-  </>
+  return (
+    <>
+      <Stack direction={'column'} height={'100%'}>
+        <GeneralHeader variant={'simple'} />
+        <Box display={'flex'} flexGrow={1}>
+          {children}
+        </Box>
+        <GeneralFooter />
+      </Stack>
+    </>
   )
 }
 export default LayoutCheckout
+
+// refactor

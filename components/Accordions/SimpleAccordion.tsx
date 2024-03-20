@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 // usar extensión Better Comments
 /**
  *  * se modifica la importación dh-marvel ya que genera este error unable to resolve path to module
@@ -42,6 +43,7 @@ import { type FaqsType } from '../../components/faqs/faqsData'
 
 export default function SimpleAccordion ({ id, question, answer }: FaqsType): JSX.Element {
   return (
+    // eslint-disable-next-line react/react-in-jsx-scope
     <div key={id}>
       <Accordion>
         <AccordionSummary
@@ -51,7 +53,9 @@ export default function SimpleAccordion ({ id, question, answer }: FaqsType): JS
           sx={{
             margin: '5px'
           }}
+        // eslint-disable-next-line react/jsx-no-comment-textnodes
         >
+          // eslint-disable-next-line react/react-in-jsx-scope
           <Typography
             sx={{
               fontWeight: '600',

@@ -11,7 +11,7 @@ import Head from 'next/head'
 import { type GetStaticProps } from 'next'
 import PropTypes from 'prop-types'
 
-export const getStaticProps: GetStaticProps<{ data: FaqsType[] }> = async () => {
+export const getStaticProps: GetStaticProps<{ data: FaqsType[] }> = async (ctx) => {
   const res = await fetch('https://aplicacionmarvel.vercel.app/api/faq')
   const data: FaqsType[] = await res.json()
 

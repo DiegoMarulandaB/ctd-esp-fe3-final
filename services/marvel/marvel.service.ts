@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { generateAuthenticationString } from '../../services/marvel/marvel-auth.service'
 
 const MARVEL_API_URL = process.env.MARVEL_API_URL
@@ -42,49 +45,3 @@ export const getCharacter = async (characterId: number) => {
 }
 
 // refactor
-
-// const MARVEL_API_URL: string = process.env.MARVEL_API_URL || ''
-
-// const fetchApi = async (endpoint: string, urlParams?: string): Promise<any> => {
-//   const authString: string = generateAuthenticationString()
-//   const url: string = `${MARVEL_API_URL}/${endpoint}?${authString}&${urlParams || ''}`
-//   const response = await fetch(url)
-//   return await response.json()
-// }
-
-// export const getComics = async (offset?: number, limit?: number): Promise<any> => {
-//   const params = new URLSearchParams()
-//   if (offset !== undefined) params.set('offset', `${offset}`)
-//   if (limit !== undefined) params.set('limit', `${limit}`)
-//   return await fetchApi('comics', params.toString())
-// }
-
-// export const getComic = async (comicId: number): Promise<any> => {
-//   const data = await fetchApi(`comics/${comicId}`)
-//   const results = data.data.results
-//   if (results.length > 0) {
-//     const comic = results[0]
-//     if (`${comic.id}`.endsWith('0')) {
-//       comic.price = 48
-//       comic.oldPrice = 48
-//       comic.stock = 0
-//     } else {
-//       comic.price = 72
-//       comic.oldPrice = 87
-//       comic.stock = 2
-//     }
-//     return comic
-//   } else {
-//     return null
-//   }
-// }
-
-// export const getCharacter = async (characterId: number): Promise<any> => {
-//   const data = await fetchApi(`characters/${characterId}`)
-//   const results = data.data.results
-//   if (results.length > 0) {
-//     return results[0]
-//   } else {
-//     return null
-//   }
-// }
