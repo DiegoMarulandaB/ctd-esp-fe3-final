@@ -72,7 +72,7 @@
 //   )
 // }
 
-// refactor
+// refactor pueden usar este
 
 import { Box, Typography } from '@mui/material'
 import { PersonalDataSchema, type PersonalDataFormValues } from '../schema.form'
@@ -81,7 +81,6 @@ import { useForm, type SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as React from 'react'
 import Input from '../Input'
-
 import { ErrorMessage } from '@hookform/error-message'
 
 export interface FormPersonalDataProps {

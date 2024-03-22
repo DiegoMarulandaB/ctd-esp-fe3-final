@@ -1,7 +1,6 @@
 const comicWithoutStock =
     {
-        id: 10
+      id: 10
     }
 
-
-export default comicWithoutStock;
+export default comicWithoutStock

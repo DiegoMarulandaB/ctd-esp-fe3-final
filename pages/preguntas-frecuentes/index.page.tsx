@@ -6,8 +6,6 @@ import BodySingle from 'dh-marvel/components/layouts/body/single/body-single'
 import { type GetStaticProps } from 'next'
 import { type FaqsType } from 'dh-marvel/components/faqs/faqsData'
 
-
-
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const urlVercel = 'https://aplicacionmarvel.vercel.app'
   try {
