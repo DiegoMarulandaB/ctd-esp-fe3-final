@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+import Container, { type ContainerProps } from '@mui/material/Container'
 import * as React from 'react'
 import { type FC, type PropsWithChildren } from 'react'
-import Container, { type ContainerProps } from '@mui/material/Container'
 import { Stack, Typography } from '@mui/material'
 
 interface BodySingleProps extends PropsWithChildren {

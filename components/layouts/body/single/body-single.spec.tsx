@@ -1,6 +1,5 @@
-/* eslint-disable react/react-in-jsx-scope */
+import BodySingle from 'dh-marvel/components/layouts/body/single/body-single'
 import { render, screen } from '@testing-library/react'
-import BodySingle from '../../../../components/layouts/body/single/body-single'
 
 describe('BodySingle', () => {
   describe('when rendering default layout', () => {

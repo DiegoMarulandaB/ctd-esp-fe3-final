@@ -1,8 +1,6 @@
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/display-name */
-import { render, screen } from '@testing-library/react'
-import GeneralHeader from '../../../components/layouts/header/general-header.component'
+import GeneralHeader from 'dh-marvel/components/layouts/header/general-header.component'
 import { type AppBarProps } from '@mui/material'
+import { render, screen } from '@testing-library/react'
 
 jest.mock('@mui/material/AppBar', () => (props: AppBarProps) => {
   return <div><h3>AppBar</h3>

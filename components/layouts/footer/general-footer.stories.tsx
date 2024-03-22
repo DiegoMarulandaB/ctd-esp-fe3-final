@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/consistent-type-assertions */
 import React from 'react'
+import GeneralFooter from 'dh-marvel/components/layouts/footer/general-footer.component'
 import { type ComponentStory, type ComponentMeta } from '@storybook/react'
-import GeneralFooter from '../../../components/layouts/footer/general-footer.component'
 
 export default {
   title: 'Layout/Footer/GeneralFooter',

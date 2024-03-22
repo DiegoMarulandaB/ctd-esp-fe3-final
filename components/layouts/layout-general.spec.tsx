@@ -1,7 +1,5 @@
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/display-name */
+import LayoutGeneral from 'dh-marvel/components/layouts/layout-general'
 import { render, screen } from '@testing-library/react'
-import LayoutGeneral from '../../components/layouts/layout-general'
 
 jest.mock('dh-marvel/components/layouts/header/general-header.component', () => () => {
   return <div>Header</div>

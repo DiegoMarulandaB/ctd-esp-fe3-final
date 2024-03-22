@@ -1,9 +1,6 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable react/display-name */
-/* eslint-disable react/react-in-jsx-scope */
-import { render, screen } from '@testing-library/react'
+import LayoutCheckout from 'dh-marvel/components/layouts/layout-checkout'
 import { type HeaderProps } from '@storybook/mdx1-csf/dist/ts/stories/Header'
-import LayoutCheckout from '../../components/layouts/layout-checkout'
+import { render, screen } from '@testing-library/react'
 
 const mockHeaderProps = jest.fn()
 jest.mock('dh-marvel/components/layouts/header/general-header.component', () => (props: HeaderProps) => {

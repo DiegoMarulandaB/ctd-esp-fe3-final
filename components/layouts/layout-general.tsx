@@ -1,9 +1,9 @@
+import GeneralHeader from 'dh-marvel/components/layouts/header/general-header.component'
+import GeneralFooter from 'dh-marvel/components/layouts/footer/general-footer.component'
+import Box from '@mui/material/Box'
 import * as React from 'react'
 import { type FC, type PropsWithChildren } from 'react'
 import { Stack } from '@mui/material'
-import Box from '@mui/material/Box'
-import GeneralHeader from '../../components/layouts/header/general-header.component'
-import GeneralFooter from '../../components/layouts/footer/general-footer.component'
 
 const LayoutGeneral: FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
   return (<>

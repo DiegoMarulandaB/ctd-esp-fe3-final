@@ -1,4 +1,4 @@
-import { generateAuthenticationString } from '../../services/marvel/marvel-auth.service'
+import { generateAuthenticationString } from 'dh-marvel/services/marvel/marvel-auth.service'
 
 describe('MarvelAuthService', () => {
   beforeEach(() => {
@@ -12,6 +12,7 @@ describe('MarvelAuthService', () => {
   describe('when generating an authentication string', () => {
     it('should return a valid query string', async () => {
       const authenticationString = generateAuthenticationString()
+      // expect(authenticationString).toBe('ts=1585699200000&apikey=PUBLIC_KEY&hash=ce606fdf2365b1f0a05ea2bdde2ee433')
       expect(authenticationString).toBe('ts=1585699200000&apikey=PUBLIC_KEY&hash=ce606fdf2365b1f0a05ea2bdde2ee433')
     })
   })

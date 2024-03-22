@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-import * as React from 'react'
-import Box from '@mui/material/Box'
 import Image from 'next/image'
+import Box from '@mui/material/Box'
+import * as React from 'react'
 import { Link } from '@mui/material'
 
 const GeneralFooter = () => {

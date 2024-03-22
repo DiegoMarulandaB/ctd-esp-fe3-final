@@ -1,6 +1,5 @@
-/* eslint-disable react/react-in-jsx-scope */
+import GeneralFooter from 'dh-marvel/components/layouts/footer/general-footer.component'
 import { render, screen } from '@testing-library/react'
-import GeneralFooter from '../../../components/layouts/footer/general-footer.component'
 
 describe('GeneralFooter', () => {
   describe('when rendering default layout', () => {

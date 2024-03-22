@@ -1,14 +1,10 @@
-/* eslint-disable react/react-in-jsx-scope */
-// usar extensión Better Comments
-/**
- *  * se modifica la importación dh-marvel ya que genera este error unable to resolve path to module
- */
-import Accordion from '@mui/material/Accordion'
-import AccordionSummary from '@mui/material/AccordionSummary'
-import AccordionDetails from '@mui/material/AccordionDetails'
-import Typography from '@mui/material/Typography'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { type FaqsType } from '../../components/faqs/faqsData'
+// import { type FaqsType } from 'dh-marvel/components/faqs/faqsData'
+// import * as React from 'react'
+// import Accordion from '@mui/material/Accordion'
+// import AccordionDetails from '@mui/material/AccordionDetails'
+// import AccordionSummary from '@mui/material/AccordionSummary'
+// import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+// import Typography from '@mui/material/Typography'
 
 // export default function SimpleAccordion ({ id, question, answer }: FaqsType) {
 //   return (
@@ -20,19 +16,19 @@ import { type FaqsType } from '../../components/faqs/faqsData'
 //           id="panel1a-header"
 //           sx={{
 //             margin: '5px'
-//           }}
-//         >
+//           }}>
 //           <Typography
 //             sx={{
 //               fontWeight: '600',
 //               color: '#305f8f  '
-//             }}
-//           >
+//             }}>
 //             {question}
 //           </Typography>
 //         </AccordionSummary>
 //         <AccordionDetails>
-//           <Typography>{answer}</Typography>
+//           <Typography>
+//             {answer}
+//           </Typography>
 //         </AccordionDetails>
 //       </Accordion>
 //     </div>
@@ -41,9 +37,16 @@ import { type FaqsType } from '../../components/faqs/faqsData'
 
 // refactor
 
+import { type FaqsType } from 'dh-marvel/components/faqs/faqsData'
+import * as React from 'react'
+import Accordion from '@mui/material/Accordion'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import Typography from '@mui/material/Typography'
+
 export default function SimpleAccordion ({ id, question, answer }: FaqsType): JSX.Element {
   return (
-    // eslint-disable-next-line react/react-in-jsx-scope
     <div key={id}>
       <Accordion>
         <AccordionSummary
@@ -53,13 +56,11 @@ export default function SimpleAccordion ({ id, question, answer }: FaqsType): JS
           sx={{
             margin: '5px'
           }}
-          // eslint-disable-next-line react/jsx-no-comment-textnodes
         >
-          // eslint-disable-next-line react/react-in-jsx-scope
           <Typography
             sx={{
               fontWeight: '600',
-              color: '#305f8f  '
+              color: '#305f8f'
             }}
           >
             {question}
