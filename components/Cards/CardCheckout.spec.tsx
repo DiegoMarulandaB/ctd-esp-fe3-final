@@ -13,7 +13,7 @@
 
 // refactor
 
-import React from 'react' // Agrega esta línea
+import React from 'react'
 import { render, screen } from '@testing-library/react'
 import CardCharacter from './CardCharacter'
 
