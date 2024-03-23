@@ -59,13 +59,18 @@
 
 // refactor
 
+/*
+* Usar la extensión better comments
+! se modifica la importación dh- marvel, por  este error  Unable to resolve path to module dado en eslint
+*/
+
 import React from 'react'
-import LayoutGeneral from 'dh-marvel/components/layouts/layout-general'
+import LayoutGeneral from '../../components/layouts/layout-general'
 import Head from 'next/head'
-import CardCharacter from 'dh-marvel/components/Cards/CardCharacter'
-import BodySingle from 'dh-marvel/components/layouts/body/single/body-single'
+import CardCharacter from '../../components/Cards/CardCharacter'
+import BodySingle from '../../components/layouts/body/single/body-single'
 import { type GetStaticPaths, type GetStaticProps } from 'next'
-import { getCharacter, getCharacters } from 'dh-marvel/services/marvel/marvel.service'
+import { getCharacter, getCharacters } from '../../services/marvel/marvel.service'
 import { Box } from '@mui/material'
 
 interface Character {

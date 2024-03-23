@@ -167,10 +167,10 @@ import Typography from '@mui/material/Typography'
 import { FormPersonalData } from './FormPersonalData/FormPersonalData'
 import { DirectionData } from './DirectionData/DirectionData'
 import { PaymentData } from './PaymentData/PaymentData'
-import { FormProvider, useForm } from 'react-hook-form'
+// import { FormProvider, useForm } from 'react-hook-form'
 import { Alert, Snackbar } from '@mui/material'
 import router from 'next/router'
-import { yupResolver } from '@hookform/resolvers/yup'
+// import { yupResolver } from '@hookform/resolvers/yup'
 import { type FormData } from '../../features/checkout/form.types'
 
 const steps = ['Datos Personales', 'Dirección de entrega', 'Datos del pago']
@@ -181,7 +181,11 @@ export interface SteppertProps {
   price: number
 }
 
-export default function HorizontalLinearStepper ({ title, image, price }: SteppertProps) {
+interface Data {
+  error?: string
+  // Otros campos si los hay
+}
+export default function HorizontalLinearStepper ({ title, image, price }: SteppertProps): JSX.Element {
   const [activeStep, setActiveStep] = React.useState<number>(0)
   const [error, setError] = React.useState<string>('')
   const [formData, setFormData] = React.useState({
@@ -201,11 +205,15 @@ export default function HorizontalLinearStepper ({ title, image, price }: Steppe
     fechadeexpiración: ''
   })
 
-  const handleNext = () => {
+  // const handleNext = () => {
+  //   setActiveStep((prevActiveStep) => prevActiveStep + 1)
+  // }
+
+  const handleNext = (): void => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1)
   }
 
-  const handleBack = () => {
+  const handleBack = (): void => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
 

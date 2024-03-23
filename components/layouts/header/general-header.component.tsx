@@ -23,7 +23,7 @@ const Header: FC<Props> = ({ variant }: Props) => {
           textDecoration: 'none'
         }}> DH-Marvel</MUILink>
       </NextLink>
-      {variant == 'general' &&
+      {variant === 'general' &&
                 <Box>
                   <NextLink href="/preguntas-frecuentes" passHref>
                     <MUILink variant="body2" sx={{ color: 'white', fontSize: 18, fontWeight: 600 }}>FAQ</MUILink>
@@ -35,7 +35,7 @@ const Header: FC<Props> = ({ variant }: Props) => {
 }
 
 const GeneralHeader: FC<Props> = ({ variant }: Props) => {
-  return variant == 'general'
+  return variant === 'general'
     ? <AppBar position="static">
       <Header variant={variant}/>
     </AppBar>

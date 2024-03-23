@@ -1,9 +1,15 @@
-import comicWithoutStock from 'dh-marvel/test/mocks/comicWithoutStock'
-import comicsWithOffsetAndLimit from 'dh-marvel/test/mocks/comicsWithOffsetAndLimit'
-import comics from 'dh-marvel/test/mocks/comics'
-import comic from 'dh-marvel/test/mocks/comic'
-import checkoutHandler, { validCard } from '../pages/api/checkout.route'
-import character from 'dh-marvel/test/mocks/character'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/*
+* Usar la extensión better comments
+! se modifica la importación dh- marvel, por  este error  Unable to resolve path to module dado en eslint
+*/
+
+import comicWithoutStock from '../test/mocks/comicWithoutStock'
+import comicsWithOffsetAndLimit from '../test/mocks/comicsWithOffsetAndLimit'
+import comics from '../test/mocks/comics'
+import comic from '../test/mocks/comic'
+// import checkoutHandler, { validCard } from '../pages/api/checkout.route'
+import character from '../test/mocks/character'
 import { rest } from 'msw'
 
 const validCardResponse = {

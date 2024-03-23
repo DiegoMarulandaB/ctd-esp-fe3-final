@@ -56,8 +56,13 @@
 
 // refactor
 
+/*
+* Usar la extensión better comments
+! se modifica la importación dh- marvel, por  este error  Unable to resolve path to module dado en eslint
+*/
+
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { type CheckoutInput } from 'dh-marvel/features/checkout/checkout.types'
+import { type CheckoutInput } from '../../features/checkout/checkout.types'
 import {
   ERROR_CARD_DATA_INCORRECT,
   ERROR_CARD_WITHOUT_AUTHORIZATION,
@@ -65,22 +70,22 @@ import {
   ERROR_INCORRECT_ADDRESS,
   ERROR_METHOD_NOT_ALLOWED,
   ERROR_SERVER
-} from 'dh-marvel/services/checkout/checkout.errors'
+} from '../../services/checkout/checkout.errors'
 
-// const serverError = 'error'
-export const invalidAddress = 'invalid'
-export const validCard = '4242 4242 4242 4242'.replace(' ', '')
-export const withoutFundsCard = '4111 4111 4111 4111'.replace(' ', '')
-export const withoutAuthorizationCard = '4000 4000 4000 4000'.replace(' ', '')
-
+// Definir tipos de datos adecuados
 type Data =
   | {
-    data: any
+    data?: CheckoutInput // Cambiado de 'any' a 'CheckoutInput'
   }
   | {
     error: string
     message: string
   };
+
+export const invalidAddress: string = 'invalid'
+export const validCard: string = '4242 4242 4242 4242'.replace(' ', '')
+export const withoutFundsCard: string = '4111 4111 4111 4111'.replace(' ', '')
+export const withoutAuthorizationCard: string = '4000 4000 4000 4000'.replace(' ', '')
 
 export default function handler (req: NextApiRequest, res: NextApiResponse<Data>): void {
   if (req.method !== 'POST') {

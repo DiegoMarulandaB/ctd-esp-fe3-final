@@ -23,9 +23,14 @@
 
 // refactor
 
+/*
+* Usar la extensión better comments
+! se modifica la importación dh- marvel, por  este error  Unable to resolve path to module dado en eslint
+*/
+
 import * as React from 'react'
 import Box from '@mui/material/Box'
-import CardHome from 'dh-marvel/components/Cards/CardHome'
+import CardHome from '../components/Cards/CardHome'
 import Grid from '@mui/material/Grid'
 
 interface Item {

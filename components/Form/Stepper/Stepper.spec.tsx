@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable react/react-in-jsx-scope */
+
+import React from 'react'
 import { render, screen, waitFor } from '@testing-library/react'
 // import { useRouter } from 'next/router'
 import Stepper from '../Stepper'

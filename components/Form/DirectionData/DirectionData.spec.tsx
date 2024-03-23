@@ -1,6 +1,12 @@
+/*
+* Usar la extensión better comments
+! se modifica la importación dh- marver, por  este error  Unable to resolve path to module dado en eslint
+*/
+
+import React from 'react'
 import { act, render, screen, waitFor } from '@testing-library/react'
-import { DirectionData } from './DirectionData'
-import { Wrapper } from 'dh-marvel/test/Wrapper'
+import { DirectionData } from '../DirectionData/DirectionData'
+import { Wrapper } from '../../../test/Wrapper'
 import userEvent from '@testing-library/user-event'
 
 describe('DirectionData.spec.tsx', () => {
@@ -8,10 +14,11 @@ describe('DirectionData.spec.tsx', () => {
     render(
       <Wrapper>
         <DirectionData
-          handleNext={() => { }}
+          handleNext={() => {}}
           activeStep={1}
-          handleBack={() => { }}
-          formData={undefined} setFormData={function (data: any): void {
+          handleBack={() => {}}
+          formData={undefined}
+          setFormData={function (data: any): void {
             throw new Error('Function not implemented.')
           }}
         />
@@ -48,10 +55,18 @@ describe('DirectionData.spec.tsx', () => {
         userEvent.click(nextButton)
       })
 
-      await waitFor(() => { expect(screen.getByText('La dirección es requerida')).toBeInTheDocument() })
-      await waitFor(() => { expect(screen.getByText('La ciudad es requerida')).toBeInTheDocument() })
-      await waitFor(() => { expect(screen.getByText('El departamento es requerido')).toBeInTheDocument() })
-      await waitFor(() => { expect(screen.getByText('El código postal es requerido')).toBeInTheDocument() })
+      await waitFor(() => {
+        expect(screen.getByText('La dirección es requerida')).toBeInTheDocument()
+      })
+      await waitFor(() => {
+        expect(screen.getByText('La ciudad es requerida')).toBeInTheDocument()
+      })
+      await waitFor(() => {
+        expect(screen.getByText('El departamento es requerido')).toBeInTheDocument()
+      })
+      await waitFor(() => {
+        expect(screen.getByText('El código postal es requerido')).toBeInTheDocument()
+      })
     })
   })
 

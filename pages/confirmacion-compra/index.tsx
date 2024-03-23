@@ -79,14 +79,19 @@
 
 // refactor
 
-import router from 'next/router'
+/*
+* Usar la extensión better comments
+! se modifica la importación dh- marvel, por  este error  Unable to resolve path to module dado en eslint
+*/
+
+// import router from 'next/router'
 import React, { useEffect } from 'react'
-import LayoutCheckout from 'dh-marvel/components/layouts/layout-checkout'
+import LayoutCheckout from '../../components/layouts/layout-checkout'
 import Head from 'next/head'
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
+// import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import BodySingle from 'dh-marvel/components/layouts/body/single/body-single'
-import { type CheckoutInput } from 'dh-marvel/features/checkout/checkout.types' // Modificar esta línea
+import BodySingle from '../../components/layouts/body/single/body-single'
+import { type CheckoutInput } from '../../features/checkout/checkout.types' // Modificar esta línea
 import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material'
 
 function PurchaseConfirmation (): JSX.Element {

@@ -1,6 +1,12 @@
+/*
+* Usar la extensión better comments
+! se modifica la importación dh- marver, por  este error  Unable to resolve path to module dado en eslint
+*/
+
+import React from 'react';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { FormPersonalData } from 'dh-marvel/components/Form/FormPersonalData/FormPersonalData'
-import { Wrapper } from 'dh-marvel/test/Wrapper'
+import { FormPersonalData } from '../../../components/Form/FormPersonalData/FormPersonalData'
+import { Wrapper } from '../../../test/Wrapper'
 import userEvent from '@testing-library/user-event'
 
 describe('FormPersonalData.spec.tsx', () => {
@@ -9,10 +15,12 @@ describe('FormPersonalData.spec.tsx', () => {
       <Wrapper>
         <FormPersonalData
           activeStep={0}
-          handleNext={() => { }}
+          handleNext={() => {}}
           setFormData={function (data: any): void {
             throw new Error('Function not implemented.')
-          }} formData={undefined} />
+          }}
+          formData={undefined}
+        />
       </Wrapper>
     )
   }
@@ -42,9 +50,15 @@ describe('FormPersonalData.spec.tsx', () => {
         userEvent.click(nextButton)
       })
 
-      await waitFor(() => { expect(screen.getByText('El nombre es requerido')).toBeInTheDocument() })
-      await waitFor(() => { expect(screen.getByText('El apellido es requerido')).toBeInTheDocument() })
-      await waitFor(() => { expect(screen.getByText('El email es requerido')).toBeInTheDocument() })
+      await waitFor(() => {
+        expect(screen.getByText('El nombre es requerido')).toBeInTheDocument()
+      })
+      await waitFor(() => {
+        expect(screen.getByText('El apellido es requerido')).toBeInTheDocument()
+      })
+      await waitFor(() => {
+        expect(screen.getByText('El email es requerido')).toBeInTheDocument()
+      })
     })
   })
 
@@ -64,9 +78,15 @@ describe('FormPersonalData.spec.tsx', () => {
         userEvent.click(nextButton)
       })
 
-      await waitFor(() => { expect(screen.queryByText('El nombre es requerido')).not.toBeInTheDocument() })
-      await waitFor(() => { expect(screen.queryByText('El apellido es requerido')).not.toBeInTheDocument() })
-      await waitFor(() => { expect(screen.queryByText('El nombre es requerido')).not.toBeInTheDocument() })
+      await waitFor(() => {
+        expect(screen.queryByText('El nombre es requerido')).not.toBeInTheDocument()
+      })
+      await waitFor(() => {
+        expect(screen.queryByText('El apellido es requerido')).not.toBeInTheDocument()
+      })
+      await waitFor(() => {
+        expect(screen.queryByText('El nombre es requerido')).not.toBeInTheDocument()
+      })
     })
   })
 })

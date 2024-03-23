@@ -1,10 +1,15 @@
-import SimpleAccordion from 'dh-marvel/components/Accordions/SimpleAccordion'
+/*
+* Usar la extensión better comments
+! se modifica la importación dh- marvel, por  este error  Unable to resolve path to module dado en eslint
+*/
+
+import SimpleAccordion from '../../components/Accordions/SimpleAccordion'
 import React from 'react'
-import LayoutGeneral from 'dh-marvel/components/layouts/layout-general'
+import LayoutGeneral from '../../components/layouts/layout-general'
 import Head from 'next/head'
-import BodySingle from 'dh-marvel/components/layouts/body/single/body-single'
+import BodySingle from '../../components/layouts/body/single/body-single'
 import { type GetStaticProps } from 'next'
-import { type FaqsType } from 'dh-marvel/components/faqs/faqsData'
+import { type FaqsType } from '../../components/faqs/faqsData'
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const urlVercel = 'https://aplicacionmarvel.vercel.app'

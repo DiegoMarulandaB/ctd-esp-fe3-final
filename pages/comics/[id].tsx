@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // import { Box } from '@mui/material'
 // import { getCharacterByComic, getComic, getComics } from 'dh-marvel/services/marvel/marvel.service'
 // import { type GetStaticPaths, type GetStaticProps } from 'next'
@@ -66,22 +67,24 @@
 
 // refactor
 
-import { Box } from '@mui/material'
-import { getCharacterByComic, getComic, getComics } from 'dh-marvel/services/marvel/marvel.service'
-import { type GetStaticPaths, type GetStaticProps } from 'next'
-import BodySingle from 'dh-marvel/components/layouts/body/single/body-single'
-import CardComic from 'dh-marvel/components/Cards/CardComic'
-import Head from 'next/head'
-import LayoutGeneral from 'dh-marvel/components/layouts/layout-general'
-import { type Comic, type Character } from 'dh-marvel/types' // Asumiendo que tengas los tipos Comic y Character definidos en tu aplicación
+/*
+* Usar la extensión better comments
+! se modifica la importación dh- marvel, por  este error  Unable to resolve path to module dado en eslint
+*/
 
-export const getStaticPaths: GetStaticPaths = async (): Promise<{
-  paths: Array<{ params: { id: string } }>
-  fallback: string
-}> => {
+import React from 'react'
+import { Box } from '@mui/material'
+import CardComic from '../../components/Cards/CardComic'
+import BodySingle from '../../components/layouts/body/single/body-single'
+import LayoutGeneral from '../../components/layouts/layout-general'
+import { getCharacterByComic, getComic, getComics } from '../../services/marvel/marvel.service'
+import { type GetStaticPaths, type GetStaticProps } from 'next'
+import Head from 'next/head'
+
+export const getStaticPaths: GetStaticPaths = async () => {
   const response = await getComics()
 
-  const paths = response.data.results.map(({ id }: { id: number }) => ({
+  const paths = response.data.results.map(({ id }: { id: any }) => ({
     params: {
       id: id?.toString()
     }
@@ -93,12 +96,8 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<{
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({
-  params
-}: {
-  params: { id: string }
-}): Promise<{ props: { comic: Comic, characters: Character[] }, revalidate: number }> => {
-  const id = parseInt(params?.id)
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const id = parseInt(params?.id as string)
   const comic = await getComic(id)
   const characters = await getCharacterByComic(id)
 
@@ -111,12 +110,7 @@ export const getStaticProps: GetStaticProps = async ({
   }
 }
 
-interface ComicDetailsProps {
-  comic: Comic
-  characters: Character[]
-}
-
-const ComicDetails = ({ comic, characters }: ComicDetailsProps): JSX.Element => {
+function ComicDetails ({ comic, characters }: { comic: any, characters: any }): React.ReactNode {
   return (
     <>
       <Head>

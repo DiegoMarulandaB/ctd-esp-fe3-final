@@ -1,6 +1,12 @@
+/*
+* Usar la extensión better comments
+! se modifica la importación dh- marver, por  este error  Unable to resolve path to module dado en eslint
+*/
+
+import React from 'react'
 import { act, render, screen, waitFor } from '@testing-library/react'
 import { PaymentData } from './PaymentData'
-import { Wrapper } from 'dh-marvel/test/Wrapper'
+import { Wrapper } from '../../../test/Wrapper'
 import userEvent from '@testing-library/user-event'
 
 describe('PaymentData.spec.tsx', () => {
@@ -8,10 +14,10 @@ describe('PaymentData.spec.tsx', () => {
     render(
       <Wrapper>
         <PaymentData
-          handleNext={() => { }}
+          handleNext={() => {}}
           activeStep={1}
-          handleBack={() => { }}
-          onSubmit={() => { }}
+          handleBack={() => {}}
+          onSubmit={() => {}}
           formData={undefined}
         />
       </Wrapper>
@@ -45,10 +51,18 @@ describe('PaymentData.spec.tsx', () => {
         userEvent.click(nextButton)
       })
 
-      await waitFor(() => { expect(screen.getByText('El número de la tarjeta es requerido')).toBeInTheDocument() })
-      await waitFor(() => { expect(screen.getByText('El nombre de la tarjeta es requerido')).toBeInTheDocument() })
-      await waitFor(() => { expect(screen.getByText('La fecha de expiración es requerida')).toBeInTheDocument() })
-      await waitFor(() => { expect(screen.getByText('El código de seguridad es requerido')).toBeInTheDocument() })
+      await waitFor(() => {
+        expect(screen.getByText('El número de la tarjeta es requerido')).toBeInTheDocument()
+      })
+      await waitFor(() => {
+        expect(screen.getByText('El nombre de la tarjeta es requerido')).toBeInTheDocument()
+      })
+      await waitFor(() => {
+        expect(screen.getByText('La fecha de expiración es requerida')).toBeInTheDocument()
+      })
+      await waitFor(() => {
+        expect(screen.getByText('El código de seguridad es requerido')).toBeInTheDocument()
+      })
     })
   })
 
@@ -57,7 +71,9 @@ describe('PaymentData.spec.tsx', () => {
       renderComponent()
 
       const cardNumInput = screen.getByRole<HTMLInputElement>('textbox', { name: /Número de tarjeta */i })
-      const cardNameInput = screen.getByRole<HTMLInputElement>('textbox', { name: /Nombre como aparece en la tarjeta/i })
+      const cardNameInput = screen.getByRole<HTMLInputElement>('textbox', {
+        name: /Nombre como aparece en la tarjeta/i
+      })
       const expirationDateInput = screen.getByRole<HTMLInputElement>('textbox', { name: /Fecha de expiración */i })
       const cvvInput = screen.getByLabelText(/Código de seguridad */i)
       const nextButton = screen.getByText(/siguiente/i)
@@ -66,7 +82,7 @@ describe('PaymentData.spec.tsx', () => {
         userEvent.type(cardNumInput, '42424242 4242 4242')
         userEvent.type(cardNameInput, 'Diego Marulanda')
         userEvent.type(expirationDateInput, '11/23')
-        userEvent.type(cvvInput, '435');
+        userEvent.type(cvvInput, '435')
         userEvent.click(nextButton)
       })
 

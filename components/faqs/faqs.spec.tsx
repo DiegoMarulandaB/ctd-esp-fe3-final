@@ -1,6 +1,12 @@
-import { faqsData } from 'dh-marvel/components/faqs/faqsData'
+/*
+* Usar la extensión better comments
+! se modifica la importación dh- marver, por  este error  Unable to resolve path to module dado en eslint
+*/
+
+import React from 'react'
+import { faqsData } from '../../components/faqs/faqsData'
 import { render, screen, waitFor } from '@testing-library/react'
-import Faq from 'dh-marvel/pages/preguntas-frecuentes/index.page'
+import Faq from '../../pages/preguntas-frecuentes/index.page'
 import userEvent from '@testing-library/user-event'
 
 describe('FaqPage', () => {

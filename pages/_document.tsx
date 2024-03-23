@@ -20,8 +20,8 @@
 
 // refactor
 
+import React from 'react'
 import { Html, Head, Main, NextScript } from 'next/document'
-import { ReactNode } from 'react'
 
 const Document: React.FC = () => {
   return (
