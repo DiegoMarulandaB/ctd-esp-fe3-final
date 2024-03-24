@@ -151,7 +151,7 @@ function Checkout (): JSX.Element {
   const [comicData, setComicData] = useState<any>()
 
   useEffect(() => {
-    if (comic) {
+    if (comic !== undefined && comic !== null) {
       const id = parseInt(comic as string)
       getComic(id).then((data: any) => {
         setComicData(data)

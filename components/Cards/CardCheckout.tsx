@@ -1,4 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
+/*
+* Usar la extensión better comments
+! se modifica la importación dh- marvel, por  este error  Unable to resolve path to module dado en eslint
+*/
+
 import Typography from '@mui/material/Typography'
 import CardMedia from '@mui/material/CardMedia'
 import CardContent from '@mui/material/CardContent'
@@ -15,11 +20,7 @@ export interface CardCheckoutProps {
 export default function CardCheckout ({ title, image, price, id }: CardCheckoutProps) {
   return (
     <Card sx={{ width: 350 }}>
-      <CardMedia
-        sx={{ height: 300 }}
-        image={image}
-        title={`${title} imagen`}
-      />
+      <CardMedia sx={{ height: 300 }} image={image} title={`${title} imagen`} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {title}
@@ -32,7 +33,7 @@ export default function CardCheckout ({ title, image, price, id }: CardCheckoutP
   )
 }
 
-// refactor
+// refactor con return
 
 // import Typography from '@mui/material/Typography'
 // import CardMedia from '@mui/material/CardMedia'
