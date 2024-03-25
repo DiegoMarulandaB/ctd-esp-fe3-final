@@ -917,6 +917,372 @@
 
 // refactor10
 
+// import type { GetServerSideProps, NextPage } from 'next'
+// import Head from 'next/head'
+// import BodySingle from '../components/layouts/body/single/body-single'
+// import { getComics } from '../services/marvel/marvel.service'
+// import React, { useEffect, useState } from 'react'
+// import ResponsiveGrid from '../components/Grid'
+// import PaginationOutlined from '../components/Pagination'
+// import LayoutGeneral from '../components/layouts/layout-general'
+
+// const INITIAL_OFFSET = 0
+// const INITIAL_LIMIT = 12
+
+// interface Comic {
+//   id: number
+//   title: string
+// }
+
+// interface IndexProps {
+//   initialComics: Comic[]
+//   initialTotal: number
+// }
+
+// export const getServerSideProps: GetServerSideProps<IndexProps> = async () => {
+//   const response = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
+//   return {
+//     props: {
+//       initialComics: response.data.results,
+//       initialTotal: response.data.total
+//     }
+//   }
+// }
+
+// const Index: NextPage<IndexProps> = ({ initialComics, initialTotal }: IndexProps) => {
+//   const [comics, setComics] = useState<Comic[]>(initialComics)
+//   const [page, setPage] = useState<number>(1)
+//   const [total, setTotal] = useState<number>(initialTotal)
+//   const LIMIT = 12
+
+//   const handleChange = (event: React.ChangeEvent<unknown>, value: number): void => {
+//     setPage(value)
+//   }
+
+//   async function deleteCookie (): Promise<void> {
+//     await fetch('/api/cookie')
+//   }
+
+//   useEffect(() => {
+//     const fetchDataAndCleanUp = async (): Promise<void> => {
+//       try {
+//         const offset = LIMIT * (page - 1)
+//         const response = await getComics(offset, LIMIT)
+//         setComics(response?.data?.results ?? [])
+//         setTotal(response?.data?.total ?? 0)
+//       } catch (error) {
+//         console.error('Error fetching comics:', error)
+//       }
+//       try {
+//         await deleteCookie()
+//         localStorage.clear()
+//       } catch (error) {
+//         console.error('Error deleting cookie:', error)
+//       }
+//     }
+
+//     fetchDataAndCleanUp().catch((error) => {
+//       console.error('Error in fetchDataAndCleanUp:', error)
+//     })
+//   }, [page])
+
+//   return (
+//     <>
+//       <Head>
+//         <title>Inicio | DH MARVEL</title>
+//         <meta name="description" content="Marvel Store Sitio Web" />
+//       </Head>
+//       <LayoutGeneral>
+//         <BodySingle title={'Aplicación Marvel'}>
+//           <PaginationOutlined count={Math.round(total / 12)} page={page} handleChange={handleChange} />
+//           <ResponsiveGrid data={comics} />
+//           <PaginationOutlined count={Math.round(total / 12)} page={page} handleChange={handleChange} />
+//         </BodySingle>
+//       </LayoutGeneral>
+//     </>
+//   )
+// }
+
+// export default Index
+
+// ! refactor11-4 errores
+
+// import type { GetServerSideProps, NextPage } from 'next'
+// import Head from 'next/head'
+// import BodySingle from '../components/layouts/body/single/body-single'
+// import { getComics } from '../services/marvel/marvel.service'
+// import React, { useEffect, useState } from 'react'
+// import ResponsiveGrid from '../components/Grid'
+// import PaginationOutlined from '../components/Pagination'
+// import LayoutGeneral from '../components/layouts/layout-general'
+// import type { MarvelApiResponse } from '../services/marvel/marvel.service'
+
+// const INITIAL_OFFSET = 0
+// const INITIAL_LIMIT = 12
+
+// interface Comic {
+//   id: number
+//   title: string
+// }
+
+// interface IndexProps {
+//   initialComics: Comic[]
+//   initialTotal: number
+// }
+
+// // interface MarvelApiResponse<T> {
+// //   code: number
+// //   status: string
+// //   data: {
+// //     results: T[]
+// //     total: number
+// //   }
+// // }
+
+// // export const getServerSideProps: GetServerSideProps<IndexProps> = async () => {
+// //   const response = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
+// //   return {
+// //     props: {
+// //       initialComics: response.data.results,
+// //       initialTotal: response.data.total
+// //     }
+// //   }
+// // }
+
+// // export const getServerSideProps: GetServerSideProps<IndexProps> = async () => {
+// //   const response = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
+// //   return {
+// //     props: {
+// //       initialComics: response.results, // response es un array, no tiene una propiedad "data"
+// //       initialTotal: response.total // response es un array, no tiene una propiedad "data"
+// //     }
+// //   }
+// // }
+
+// // export const getServerSideProps: GetServerSideProps<IndexProps> = async () => {
+// //   const response: MarvelApiResponse<Comic> = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
+// //   return {
+// //     props: {
+// //       initialComics: response.data.results,
+// //       initialTotal: response.data.total
+// //     }
+// //   }
+// // }
+
+// export const getServerSideProps: GetServerSideProps<IndexProps> = async () => {
+//   const response: Comic[] = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
+//   const marvelApiResponse: MarvelApiResponse<Comic> = {
+//     code: 200,
+//     status: 'OK',
+//     data: {
+//       results: response,
+//       total: response.length
+//     }
+//   }
+//   return {
+//     props: {
+//       initialComics: marvelApiResponse.data.results,
+//       initialTotal: marvelApiResponse.data.total
+//     }
+//   }
+// }
+
+// const Index: NextPage<IndexProps> = ({ initialComics, initialTotal }: IndexProps) => {
+//   const [comics, setComics] = useState<Comic[]>(initialComics)
+//   const [page, setPage] = useState<number>(1)
+//   const [total, setTotal] = useState<number>(initialTotal)
+//   const LIMIT = 12
+
+//   const handleChange = (event: React.ChangeEvent<unknown>, value: number): void => {
+//     setPage(value)
+//   }
+
+//   async function deleteCookie (): Promise<void> {
+//     await fetch('/api/cookie')
+//   }
+
+//   useEffect(() => {
+//     const fetchDataAndCleanUp = async (): Promise<void> => {
+//       try {
+//         const offset = LIMIT * (page - 1)
+//         const response = await getComics(offset, LIMIT)
+//         setComics(response?.data?.results ?? [])
+//         setTotal(response?.data?.total ?? 0)
+//       } catch (error) {
+//         console.error('Error fetching comics:', error)
+//       }
+//       try {
+//         await deleteCookie()
+//         localStorage.clear()
+//       } catch (error) {
+//         console.error('Error deleting cookie:', error)
+//       }
+//     }
+
+//     fetchDataAndCleanUp().catch((error) => {
+//       console.error('Error in fetchDataAndCleanUp:', error)
+//     })
+//   }, [page])
+
+//   return (
+//     <>
+//       <Head>
+//         <title>Inicio | DH MARVEL</title>
+//         <meta name="description" content="Marvel Store Sitio Web" />
+//       </Head>
+//       <LayoutGeneral>
+//         <BodySingle title={'Aplicación Marvel'}>
+//           <PaginationOutlined count={Math.round(total / 12)} page={page} handleChange={handleChange} />
+//           <ResponsiveGrid data={comics} />
+//           <PaginationOutlined count={Math.round(total / 12)} page={page} handleChange={handleChange} />
+//         </BodySingle>
+//       </LayoutGeneral>
+//     </>
+//   )
+// }
+
+// export default Index
+
+// ! refactor15-dos errores
+
+// import type { GetServerSideProps, NextPage } from 'next'
+// import Head from 'next/head'
+// import BodySingle from '../components/layouts/body/single/body-single'
+// import { getComics } from '../services/marvel/marvel.service'
+// import React, { useEffect, useState } from 'react'
+// import ResponsiveGrid from '../components/Grid'
+// import PaginationOutlined from '../components/Pagination'
+// import LayoutGeneral from '../components/layouts/layout-general'
+// import type { MarvelApiResponse } from '../services/marvel/marvel.service'
+
+// const INITIAL_OFFSET = 0
+// const INITIAL_LIMIT = 12
+
+// interface Comic {
+//   id: number
+//   title: string
+// }
+
+// interface IndexProps {
+//   initialComics: Comic[]
+//   initialTotal: number
+// }
+
+// // interface MarvelApiResponse<T> {
+// //   code: number
+// //   status: string
+// //   data: {
+// //     results: T[]
+// //     total: number
+// //   }
+// // }
+
+// // export const getServerSideProps: GetServerSideProps<IndexProps> = async () => {
+// //   const response = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
+// //   return {
+// //     props: {
+// //       initialComics: response.data.results,
+// //       initialTotal: response.data.total
+// //     }
+// //   }
+// // }
+
+// // export const getServerSideProps: GetServerSideProps<IndexProps> = async () => {
+// //   const response = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
+// //   return {
+// //     props: {
+// //       initialComics: response.results, // response es un array, no tiene una propiedad "data"
+// //       initialTotal: response.total // response es un array, no tiene una propiedad "data"
+// //     }
+// //   }
+// // }
+
+// // export const getServerSideProps: GetServerSideProps<IndexProps> = async () => {
+// //   const response: MarvelApiResponse<Comic> = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
+// //   return {
+// //     props: {
+// //       initialComics: response.data.results,
+// //       initialTotal: response.data.total
+// //     }
+// //   }
+// // }
+
+// export const getServerSideProps: GetServerSideProps<IndexProps> = async () => {
+//   const response: Comic[] = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
+//   const marvelApiResponse: MarvelApiResponse<Comic> = {
+//     code: 200,
+//     status: 'OK',
+//     data: {
+//       results: response,
+//       total: response.length
+//     }
+//   }
+//   return {
+//     props: {
+//       initialComics: marvelApiResponse.data.results,
+//       initialTotal: marvelApiResponse.data.total
+//     }
+//   }
+// }
+
+// const Index: NextPage<IndexProps> = ({ initialComics, initialTotal }: IndexProps) => {
+//   const [comics, setComics] = useState<Comic[]>(initialComics)
+//   const [page, setPage] = useState<number>(1)
+//   const [total, setTotal] = useState<number>(initialTotal)
+//   const LIMIT = 12
+
+//   const handleChange = (event: React.ChangeEvent<unknown>, value: number): void => {
+//     setPage(value)
+//   }
+
+//   async function deleteCookie (): Promise<void> {
+//     await fetch('/api/cookie')
+//   }
+
+//   useEffect(() => {
+//     const fetchDataAndCleanUp = async (): Promise<void> => {
+//       try {
+//         const offset = LIMIT * (page - 1)
+//         const response: MarvelApiResponse<Comic[]> = await getComics(offset, LIMIT)
+//         setComics(response?.data?.results ?? [])
+//         setTotal(response?.data?.total ?? 0)
+//       } catch (error) {
+//         console.error('Error fetching comics:', error)
+//       }
+//       try {
+//         await deleteCookie()
+//         localStorage.clear()
+//       } catch (error) {
+//         console.error('Error deleting cookie:', error)
+//       }
+//     }
+
+//     fetchDataAndCleanUp().catch((error) => {
+//       console.error('Error in fetchDataAndCleanUp:', error)
+//     })
+//   }, [page])
+
+//   return (
+//     <>
+//       <Head>
+//         <title>Inicio | DH MARVEL</title>
+//         <meta name="description" content="Marvel Store Sitio Web" />
+//       </Head>
+//       <LayoutGeneral>
+//         <BodySingle title={'Aplicación Marvel'}>
+//           <PaginationOutlined count={Math.round(total / 12)} page={page} handleChange={handleChange} />
+//           <ResponsiveGrid data={comics} />
+//           <PaginationOutlined count={Math.round(total / 12)} page={page} handleChange={handleChange} />
+//         </BodySingle>
+//       </LayoutGeneral>
+//     </>
+//   )
+// }
+
+// export default Index
+
+// !refactor16 tiene dos errores+
+
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import BodySingle from '../components/layouts/body/single/body-single'
@@ -925,6 +1291,7 @@ import React, { useEffect, useState } from 'react'
 import ResponsiveGrid from '../components/Grid'
 import PaginationOutlined from '../components/Pagination'
 import LayoutGeneral from '../components/layouts/layout-general'
+import type { MarvelApiResponse } from '../services/marvel/marvel.service'
 
 const INITIAL_OFFSET = 0
 const INITIAL_LIMIT = 12
@@ -939,12 +1306,59 @@ interface IndexProps {
   initialTotal: number
 }
 
+// interface MarvelApiResponse<T> {
+//   code: number
+//   status: string
+//   data: {
+//     results: T[]
+//     total: number
+//   }
+// }
+
+// export const getServerSideProps: GetServerSideProps<IndexProps> = async () => {
+//   const response = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
+//   return {
+//     props: {
+//       initialComics: response.data.results,
+//       initialTotal: response.data.total
+//     }
+//   }
+// }
+
+// export const getServerSideProps: GetServerSideProps<IndexProps> = async () => {
+//   const response = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
+//   return {
+//     props: {
+//       initialComics: response.results, // response es un array, no tiene una propiedad "data"
+//       initialTotal: response.total // response es un array, no tiene una propiedad "data"
+//     }
+//   }
+// }
+
+// export const getServerSideProps: GetServerSideProps<IndexProps> = async () => {
+//   const response: MarvelApiResponse<Comic> = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
+//   return {
+//     props: {
+//       initialComics: response.data.results,
+//       initialTotal: response.data.total
+//     }
+//   }
+// }
+
 export const getServerSideProps: GetServerSideProps<IndexProps> = async () => {
-  const response = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
+  const response: Comic[] = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
+  const marvelApiResponse: MarvelApiResponse<Comic> = {
+    code: 200,
+    status: 'OK',
+    data: {
+      results: response,
+      total: response.length
+    }
+  }
   return {
     props: {
-      initialComics: response.data.results,
-      initialTotal: response.data.total
+      initialComics: marvelApiResponse.data.results,
+      initialTotal: marvelApiResponse.data.total
     }
   }
 }
@@ -967,9 +1381,17 @@ const Index: NextPage<IndexProps> = ({ initialComics, initialTotal }: IndexProps
     const fetchDataAndCleanUp = async (): Promise<void> => {
       try {
         const offset = LIMIT * (page - 1)
-        const response = await getComics(offset, LIMIT)
-        setComics(response?.data?.results ?? [])
-        setTotal(response?.data?.total ?? 0)
+        const response: Comic[] = await getComics(offset, LIMIT) // Asigna el resultado directamente a Comic[]
+        const marvelApiResponse: MarvelApiResponse<Comic[]> = {
+          code: 200,
+          status: 'OK',
+          data: {
+            results: response,
+            total: response.length
+          }
+        }
+        setComics(marvelApiResponse.data.results)
+        setTotal(marvelApiResponse.data.total)
       } catch (error) {
         console.error('Error fetching comics:', error)
       }
@@ -1004,3 +1426,114 @@ const Index: NextPage<IndexProps> = ({ initialComics, initialTotal }: IndexProps
 }
 
 export default Index
+
+// !refactor 17
+
+// import type { GetServerSideProps, NextPage } from 'next'
+// import Head from 'next/head'
+// import BodySingle from '../components/layouts/body/single/body-single'
+// import { getComics, type MarvelApiResponse, type Comic } from '../services/marvel/marvel.service'
+// import React, { useEffect, useState } from 'react'
+// import ResponsiveGrid from '../components/Grid'
+// import PaginationOutlined from '../components/Pagination'
+// import LayoutGeneral from '../components/layouts/layout-general'
+
+// const INITIAL_OFFSET = 0
+// const INITIAL_LIMIT = 12
+
+// interface IndexProps {
+//   initialComics: Comic[]
+//   initialTotal: number
+// }
+
+// export const getServerSideProps: GetServerSideProps<IndexProps> = async () => {
+//   try {
+//     const response = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
+//     const marvelApiResponse: MarvelApiResponse<Comic[]> = {
+//       code: 200,
+//       status: 'OK',
+//       data: {
+//         results: response,
+//         total: response.length
+//       }
+//     }
+//     return {
+//       props: {
+//         initialComics: marvelApiResponse.data.results,
+//         initialTotal: marvelApiResponse.data.total
+//       }
+//     }
+//   } catch (error) {
+//     console.error('Error fetching comics:', error)
+//     return {
+//       props: {
+//         initialComics: [],
+//         initialTotal: 0
+//       }
+//     }
+//   }
+// }
+
+// const Index: NextPage<IndexProps> = ({ initialComics, initialTotal }) => {
+//   const [comics, setComics] = useState<Comic[]>(initialComics)
+//   const [page, setPage] = useState<number>(1)
+//   const [total, setTotal] = useState<number>(initialTotal)
+//   const LIMIT = 12
+
+//   const handleChange = (_event: React.ChangeEvent<unknown>, value: number): void => {
+//     setPage(value)
+//   }
+
+//   async function deleteCookie (): Promise<void> {
+//     await fetch('/api/cookie')
+//   }
+
+//   useEffect(() => {
+//     const fetchDataAndCleanUp = async (): Promise<void> => {
+//       try {
+//         const offset = LIMIT * (page - 1)
+//         const response = await getComics(offset, LIMIT)
+//         const marvelApiResponse: MarvelApiResponse<Comic[]> = {
+//           code: 200,
+//           status: 'OK',
+//           data: {
+//             results: response,
+//             total: response.length
+//           }
+//         }
+//         setComics(marvelApiResponse.data.results)
+//         setTotal(marvelApiResponse.data.total)
+//       } catch (error) {
+//         console.error('Error fetching comics:', error)
+//       }
+//       try {
+//         await deleteCookie()
+//         localStorage.clear()
+//       } catch (error) {
+//         console.error('Error deleting cookie:', error)
+//       }
+//     }
+
+//     fetchDataAndCleanUp().catch((error) => {
+//       console.error('Error in fetchDataAndCleanUp:', error)
+//     })
+//   }, [page])
+
+//   return (
+//     <>
+//       <Head>
+//         <title>Inicio | DH MARVEL</title>
+//         <meta name="description" content="Marvel Store Sitio Web" />
+//       </Head>
+//       <LayoutGeneral>
+//         <BodySingle title={'Aplicación Marvel'}>
+//           <PaginationOutlined count={Math.round(total / 12)} page={page} handleChange={handleChange} />
+//           <ResponsiveGrid data={comics} />
+//           <PaginationOutlined count={Math.round(total / 12)} page={page} handleChange={handleChange} />
+//         </BodySingle>
+//       </LayoutGeneral>
+//     </>
+//   )
+// }
+
+// export default Index

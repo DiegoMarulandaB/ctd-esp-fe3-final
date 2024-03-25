@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
-// import { Box, Typography } from '@mui/material'
-// import { PersonalDataSchema } from '../schema.form'
-// import { StepperButtons } from '../StepperButtons'
-// import { useForm } from 'react-hook-form'
-// import { yupResolver } from '@hookform/resolvers/yup'
+// !original
 // import * as React from 'react'
+// import { Box, Typography } from '@mui/material'
+// import { useForm } from 'react-hook-form'
 // import Input from '../Input'
-
+// import { StepperButtons } from '../StepperButtons'
+// import { yupResolver } from '@hookform/resolvers/yup'
+// import { PersonalDataSchema } from '../schema.form'
 // import { ErrorMessage } from '@hookform/error-message'
 
 // export interface FormPersonalDataProps {
@@ -16,8 +15,17 @@
 //   formData: any
 // }
 
-// export const FormPersonalData: React.FC<FormPersonalDataProps> = ({ activeStep, handleNext, setFormData, formData }: FormPersonalDataProps) => {
-//   const { handleSubmit, formState: { errors }, control } = useForm({
+// export const FormPersonalData: React.FC<FormPersonalDataProps> = ({
+//   activeStep,
+//   handleNext,
+//   setFormData,
+//   formData
+// }: FormPersonalDataProps) => {
+//   const {
+//     handleSubmit,
+//     formState: { errors },
+//     control
+//   } = useForm({
 //     defaultValues: {
 //       ...formData
 //     },
@@ -39,11 +47,11 @@
 //           name="nombre"
 //           type="text"
 //           error={Boolean(errors.nombre)}
+//           // helperText={`${errors.nombre?.message || ''}`}
 //         />
 //         <Typography variant="caption" color="error">
 //           <ErrorMessage name="nombre" errors={errors} />
 //         </Typography>
-
 //         <Input
 //           required
 //           label="Apellido"
@@ -54,25 +62,25 @@
 //         <Typography variant="caption" color="error">
 //           <ErrorMessage name="apellido" errors={errors} />
 //         </Typography>
-
 //         <Input
 //           required
 //           label="Email"
 //           control={control}
 //           name="email"
 //           error={Boolean(errors.email)}
+//           // helperText={`${errors.email?.message || ''}`}
 //         />
 //         <Typography variant="caption" color="error">
 //           <ErrorMessage name="email" errors={errors} />
-//         </Typography>
 
+//         </Typography>
 //         <StepperButtons activeStep={activeStep} handleNext={handleSubmit(onSubmit)} handleBack={() => {}} />
 //       </form>
 //     </Box>
 //   )
 // }
 
-// refactor pueden usar este
+// !refactor2 bueno
 
 // import { Box, Typography } from '@mui/material'
 // import { PersonalDataSchema, type PersonalDataFormValues } from '../schema.form'
@@ -82,13 +90,6 @@
 // import * as React from 'react'
 // import Input from '../Input'
 // import { ErrorMessage } from '@hookform/error-message'
-
-// // export interface FormPersonalDataProps {
-// //   activeStep: number
-// //   handleNext: () => void
-// //   setFormData: (data: PersonalDataFormValues) => void // Assuming PersonalDataFormValues is the type for your form data
-// //   formData: PersonalDataFormValues // Assuming PersonalDataFormValues is the type for your form data
-// // }
 
 // export interface FormPersonalDataProps {
 //   activeStep: number
@@ -111,11 +112,6 @@
 //     defaultValues: formData,
 //     resolver: yupResolver(PersonalDataSchema)
 //   })
-
-//   // const onSubmit: SubmitHandler<PersonalDataFormValues> = (data) => {
-//   //   setFormData({ ...formData, ...data })
-//   //   handleNext()
-//   // }
 
 //   const onSubmit: SubmitHandler<PersonalDataFormValues> = (data) => {
 //     setFormData(data)
@@ -146,7 +142,7 @@
 //   )
 // }
 
-// refactor2
+// !refactor pasado por chat los4
 
 import { Box, Typography } from '@mui/material'
 import { PersonalDataSchema, type PersonalDataFormValues } from '../schema.form'

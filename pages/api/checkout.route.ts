@@ -75,7 +75,7 @@ import {
 // Definir tipos de datos adecuados
 type Data =
   | {
-    data?: CheckoutInput // Cambiado de 'any' a 'CheckoutInput'
+    data?: CheckoutInput
   }
   | {
     error: string

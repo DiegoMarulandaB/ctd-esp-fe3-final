@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// import { Box, Typography } from '@mui/material'
-// import { PaymentDataSchema } from '../schema.form'
-// import { StepperButtons } from '../StepperButtons'
-// import { useForm } from 'react-hook-form'
-// import { yupResolver } from '@hookform/resolvers/yup'
+// !original
 // import * as React from 'react'
+// import { Box, Typography } from '@mui/material'
 // import Input from '../Input'
+// import { useForm } from 'react-hook-form'
+// import { StepperButtons } from '../StepperButtons'
+// import { PaymentDataSchema } from '../schema.form'
+// import { yupResolver } from '@hookform/resolvers/yup'
 // import { ErrorMessage } from '@hookform/error-message'
 
 // export interface PaymentDataProps {
@@ -17,8 +16,18 @@
 //   formData: any
 // }
 
-// export const PaymentData: React.FC<PaymentDataProps> = ({ activeStep, handleNext, handleBack, onSubmit, formData }: PaymentDataProps) => {
-//   const { handleSubmit, formState: { errors }, control } = useForm({
+// export const PaymentData: React.FC<PaymentDataProps> = ({
+//   activeStep,
+//   handleNext,
+//   handleBack,
+//   onSubmit,
+//   formData
+// }: PaymentDataProps) => {
+//   const {
+//     handleSubmit,
+//     formState: { errors },
+//     control
+//   } = useForm({
 //     defaultValues: {
 //       ...formData
 //     },
@@ -34,7 +43,6 @@
 //           control={control}
 //           name="numerotarjeta"
 //           error={Boolean(errors.numerotarjeta)}
-//           // helperText={`${errors.numtarjeta?.message || ''}`}
 //         />
 //         <Typography variant="caption" color="error">
 //           <ErrorMessage name="numerotarjeta" errors={errors} />
@@ -45,7 +53,6 @@
 //           control={control}
 //           name="nombretarjeta"
 //           error={Boolean(errors.nombretarjeta)}
-//           // helperText={`${errors.nombretarjeta?.message || ''}`}
 //         />
 //         <Typography variant="caption" color="error">
 //           <ErrorMessage name="nombretarjeta" errors={errors} />
@@ -56,10 +63,9 @@
 //           control={control}
 //           name="fechadeexpiración"
 //           error={Boolean(errors.fechadeexpiración)}
-//           // helperText={`${errors.fechadeexpiración?.message || ''}`}
 //         />
 //         <Typography variant="caption" color="error">
-//           <ErrorMessage name="fechadeexpiracion" errors={errors} />
+//           <ErrorMessage name="fechadeexpiración" errors={errors} />
 //         </Typography>
 //         <Input
 //           required
@@ -67,7 +73,6 @@
 //           control={control}
 //           name="codigodeseguridad"
 //           error={Boolean(errors.codigodeseguridad)}
-//           // helperText={`${errors.codigodeseguridad?.message || ''}`}
 //         />
 //         <Typography variant="caption" color="error">
 //           <ErrorMessage name="codigodeseguridad" errors={errors} />
@@ -78,7 +83,7 @@
 //   )
 // }
 
-// refactor2
+// ! refactor2 bueno
 
 import { Box, Typography } from '@mui/material'
 import { PaymentDataSchema } from '../schema.form'
@@ -124,7 +129,6 @@ export const PaymentData: React.FC<PaymentDataProps> = ({
           control={control}
           name="numerotarjeta"
           error={Boolean(errors.numerotarjeta)}
-          // helperText={`${errors.numtarjeta?.message || ''}`}
         />
         <Typography variant="caption" color="error">
           <ErrorMessage name="numerotarjeta" errors={errors} />

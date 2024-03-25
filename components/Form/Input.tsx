@@ -60,9 +60,9 @@ import { Visibility, VisibilityOff } from '@mui/icons-material'
 import React, { type FC } from 'react'
 
 export type Props = {
-  control: any
+  control: string // any
   name: string
-  rules?: any
+  rules?: string // any
 } & TextFieldProps;
 
 const Input: FC<Props> = ({ control, name, rules, ...props }) => {

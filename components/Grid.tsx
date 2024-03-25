@@ -64,7 +64,7 @@
 
 import React from 'react'
 import { Box, Grid } from '@mui/material'
-import CardHome from '../components/Cards/CardHome' // Asumiendo que tienes una importación para CardHome
+import CardHome from '../components/Cards/CardHome'
 
 interface Item {
   id: number
