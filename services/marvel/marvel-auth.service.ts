@@ -18,6 +18,7 @@
 //   return `ts=${ts}&apikey=${process.env.NEXT_PUBLIC_MARVEL_API_PUBLIC_KEY}&hash=${hash}`
 // }
 
+// !Refactor
 import md5 from 'md5'
 
 export const generateAuthenticationString = (): string => {
