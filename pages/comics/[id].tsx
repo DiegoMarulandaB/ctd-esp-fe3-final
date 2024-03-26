@@ -230,10 +230,42 @@ import Head from 'next/head'
 //     fallback: 'blocking'
 //   }
 // }
+
+//! error en data
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   try {
+//     const response = await getComics()
+//     const paths = response.data.results.map(({ id }: { id: number }) => ({
+//       params: {
+//         id: id?.toString()
+//       }
+//     }))
+//     return {
+//       paths,
+//       fallback: 'blocking'
+//     }
+//   } catch (error) {
+//     console.error('Error fetching paths:', error)
+//     return {
+//       paths: [],
+//       fallback: 'blocking'
+//     }
+//   }
+// }
+
+//   return {
+//     paths,
+//     fallback: 'blocking'
+//   }
+// }
+
+//! respuesta chat
+
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const response = await getComics()
-    const paths = response.data.results.map(({ id }: { id: number }) => ({
+    const paths = response.map(({ id }: { id: number }) => ({
+      // Eliminar .data de response
       params: {
         id: id?.toString()
       }
@@ -250,12 +282,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
   }
 }
-
-//   return {
-//     paths,
-//     fallback: 'blocking'
-//   }
-// }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const id = parseInt(params?.id as string)
