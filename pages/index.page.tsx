@@ -28,7 +28,7 @@ export const getServerSideProps: GetServerSideProps<IndexProps> = async () => {
     code: 200,
     status: 'OK',
     data: {
-      results: response, // Aquí debes eliminar los corchetes alrededor de `response`
+      results: response,
       total: response.length
     }
   }
@@ -63,7 +63,7 @@ const Index: NextPage<IndexProps> = ({ initialComics, initialTotal }: IndexProps
           code: 200,
           status: 'OK',
           data: {
-            results: response, // Aquí debes eliminar los corchetes alrededor de `response`
+            results: response,
             total: response.length
           }
         }

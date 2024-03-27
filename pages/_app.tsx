@@ -7,7 +7,7 @@ import type { AppProps } from 'next/app'
 // import LayoutGeneral from '../components/layouts/layout-general'
 import { theme } from '../styles/material-theme'
 import { CssBaseline, ThemeProvider } from '@mui/material'
-import React from 'react' // Importa React
+import React from 'react'
 
 function MyApp ({ Component, pageProps }: AppProps): JSX.Element {
   // Especifica el tipo de retorno

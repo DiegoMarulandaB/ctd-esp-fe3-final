@@ -124,7 +124,7 @@ export const getComics = async (offset?: number, limit?: number): Promise<Comic[
   if (offset !== undefined) params.set('offset', `${offset}`)
   if (limit !== undefined) params.set('limit', `${limit}`)
   const data: MarvelApiResponse<Comic | Character> = await fetchApi('comics', params.toString())
-  return data.data.results.filter((result): result is Comic => 'title' in result) // Filtramos solo los cómics
+  return data.data.results.filter((result): result is Comic => 'title' in result)
 }
 
 export const getComic = async (comicId: number): Promise<Comic | null> => {
@@ -156,7 +156,7 @@ export const getComic = async (comicId: number): Promise<Comic | null> => {
 
 export const getCharacters = async (): Promise<Character[]> => {
   const data = await fetchApi('characters')
-  return data.data.results.filter((result): result is Character => 'name' in result) // Filtramos solo los personajes
+  return data.data.results.filter((result): result is Character => 'name' in result)
 }
 export const getCharacter = async (characterId: number): Promise<Character | null> => {
   const data = await fetchApi(`characters/${characterId}`)

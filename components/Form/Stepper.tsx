@@ -14,11 +14,9 @@ import Typography from '@mui/material/Typography'
 import { FormPersonalData } from './FormPersonalData/FormPersonalData'
 import { DirectionData } from './DirectionData/DirectionData'
 import { PaymentData } from './PaymentData/PaymentData'
-// import { FormProvider, useForm } from 'react-hook-form'
 import { Alert, Snackbar } from '@mui/material'
 import router from 'next/router'
-// import { yupResolver } from '@hookform/resolvers/yup'
-import { type FormData } from '../../features/checkout/form.types' // Changed to import directly
+import { type FormData } from '../../features/checkout/form.types'
 import { type PersonalDataFormValues } from './schema.form'
 
 const steps = ['Datos Personales', 'Dirección de entrega', 'Datos del pago']

@@ -7,14 +7,13 @@
 import React, { useEffect } from 'react'
 import LayoutCheckout from '../../components/layouts/layout-checkout'
 import Head from 'next/head'
-// import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import BodySingle from '../../components/layouts/body/single/body-single'
-import { type CheckoutInput } from '../../features/checkout/checkout.types' // Modificar esta línea
+import { type CheckoutInput } from '../../features/checkout/checkout.types'
 import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material'
 
 function PurchaseConfirmation (): JSX.Element {
-  const [purchase, setPurchase] = React.useState<CheckoutInput | undefined>() // Modificar esta línea
+  const [purchase, setPurchase] = React.useState<CheckoutInput | undefined>()
 
   useEffect(() => {
     const item = localStorage.getItem('purchase-data')
