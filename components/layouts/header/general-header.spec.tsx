@@ -71,18 +71,6 @@ jest.mock('@mui/material/AppBar', () => (props: AppBarProps): JSX.Element => {
   )
 })
 
-// Esto es un componente anónimo, por lo que no tiene nombre
-// Puedes asignar un nombre así:
-// const MockedAppBar = (props: AppBarProps): JSX.Element => {
-//   return (
-//     <div>
-//       <h3>AppBar</h3>
-//       <div>{props.children}</div>
-//     </div>
-//   )
-// }
-
-// O establecer el displayName directamente en la función anónima
 const MockedAppBar = (props: AppBarProps): JSX.Element => {
   return (
     <div>
@@ -92,7 +80,7 @@ const MockedAppBar = (props: AppBarProps): JSX.Element => {
   )
 }
 
-MockedAppBar.displayName = 'AppBar' // Agregar displayName aquí
+MockedAppBar.displayName = 'AppBar'
 
 describe('GeneralHeader', () => {
   describe('when rendering general layout', () => {

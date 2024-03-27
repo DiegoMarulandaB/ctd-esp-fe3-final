@@ -1,5 +1,3 @@
-//! otro refactor mas y tien dos errores
-
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import BodySingle from '../components/layouts/body/single/body-single'

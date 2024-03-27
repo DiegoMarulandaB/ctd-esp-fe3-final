@@ -1,26 +1,26 @@
-//! error linea 49 Promise-returning function provided to attribute where a void return was expected.
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/*
+* Usar la extensión better comments
+! se modifica la importación dh- marvel, por  este error  Unable to resolve path to module dado en eslint
+*/
+
 import { Box, Typography } from '@mui/material'
 import { DirectionDataSchema } from '../schema.form'
 import { StepperButtons } from '../StepperButtons'
-import { useForm, type SubmitHandler } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as React from 'react'
 import Input from '../Input'
 import { ErrorMessage } from '@hookform/error-message'
 
-export interface FormData {
-  direccion: string
-  departamento: string
-  ciudad: string
-  codigopostal: string
-}
-
+//! any
 export interface DirectionDataProps {
   activeStep: number
   handleNext: () => void
   handleBack: () => void
-  setFormData: React.Dispatch<React.SetStateAction<FormData>> // Corregir el tipo de setFormData
-  formData: FormData
+  setFormData: (data: any) => void
+  formData: any
 }
 
 export const DirectionData: React.FC<DirectionDataProps> = ({
@@ -34,13 +34,22 @@ export const DirectionData: React.FC<DirectionDataProps> = ({
     handleSubmit,
     formState: { errors },
     control
-  } = useForm<FormData>({
-    defaultValues: formData,
+  } = useForm({
+    defaultValues: {
+      ...formData
+    },
     resolver: yupResolver(DirectionDataSchema)
   })
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    setFormData(data)
+  const onSubmit = (data: any): void => {
+    setFormData({
+      ...formData,
+      direccion: data.direccion,
+      dpto: data.dpto,
+      ciudad: data.ciudad,
+      departamento: data.departamento,
+      codigopostal: data.codigopostal
+    })
     handleNext()
   }
 
@@ -51,7 +60,7 @@ export const DirectionData: React.FC<DirectionDataProps> = ({
         <Typography variant="caption" color="error">
           <ErrorMessage name="direccion" errors={errors} />
         </Typography>
-        <Input label="Dpto, piso, etc. (opcional)" control={control} name="departamento" />
+        <Input label="Dpto, piso, etc. (opcional)" control={control} name="dpto" />
         <Input required label="Ciudad" control={control} name="ciudad" error={Boolean(errors.ciudad)} />
         <Typography variant="caption" color="error">
           <ErrorMessage name="ciudad" errors={errors} />
@@ -76,7 +85,7 @@ export const DirectionData: React.FC<DirectionDataProps> = ({
         <Typography variant="caption" color="error">
           <ErrorMessage name="codigopostal" errors={errors} />
         </Typography>
-        <StepperButtons activeStep={activeStep} handleNext={handleNext} handleBack={handleBack} />
+        <StepperButtons activeStep={activeStep} handleNext={handleSubmit(onSubmit)} handleBack={handleBack} />
       </form>
     </Box>
   )

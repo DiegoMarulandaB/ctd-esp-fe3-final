@@ -1,3 +1,9 @@
+/* eslint-disable @typescript-eslint/consistent-type-assertions */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-confusing-void-expression */
+/* eslint-disable @typescript-eslint/await-thenable */
+/* eslint-disable object-curly-newline */
+/* eslint-disable object-property-newline */
 /*
 * Usar la extensión better comments
 ! se modifica la importación dh- marvel, por  este error  Unable to resolve path to module dado en eslint
@@ -122,7 +128,18 @@ import {
 describe('Checkout', () => {
   describe('when sending a valid POST, customer and card data', () => {
     it('should return a 400 error', async () => {
-      const order: CheckoutInput = { customer: { address: {} }, card: { number: validCard } }
+      const order: CheckoutInput = { customer: { address: {
+        address1: '',
+        address2: null,
+        city: '',
+        state: '',
+        zipCode: ''
+      } }, card: {
+        number: validCard,
+        cvc: '',
+        expDate: '',
+        nameOnCard: ''
+      } }
       const { req, res } = createMocks({
         method: 'POST',
         body: order

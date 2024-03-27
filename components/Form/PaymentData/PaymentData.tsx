@@ -1,4 +1,9 @@
-//! !error linea 45 Promise-returning function provided to attribute where a void return was expected.
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/*
+* Usar la extensión better comments
+! se modifica la importación dh- marvel, por  este error  Unable to resolve path to module dado en eslint
+*/
 
 import * as React from 'react'
 import { Box, Typography } from '@mui/material'
@@ -9,12 +14,13 @@ import { PaymentDataSchema } from '../schema.form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { ErrorMessage } from '@hookform/error-message'
 
+//! any
 export interface PaymentDataProps {
   activeStep: number
   handleNext: () => void
   handleBack: () => void
-  onSubmit: (data: string) => Promise<void> // Corrección aquí
-  formData: Record<string, string> // Cambiado a un objeto
+  onSubmit: (data: any) => void
+  formData: any
 }
 
 export const PaymentData: React.FC<PaymentDataProps> = ({
@@ -35,14 +41,19 @@ export const PaymentData: React.FC<PaymentDataProps> = ({
     resolver: yupResolver(PaymentDataSchema)
   })
 
-  const handleFormSubmit = async (data: string): Promise<void> => {
-    // Corrección aquí
-    await onSubmit(data)
-  }
+  // const handleSubmitForm = async (data: any)  => {
+  //   await onSubmit(data)
+  // }
 
   return (
     <Box>
-      <form onSubmit={handleSubmit(handleFormSubmit)}>
+      {/* <form onSubmit={handleSubmit}> */}
+      {/* <form onSubmit={handleSubmit(onSubmit)}> */}
+      <form
+        onSubmit={handleSubmit(async (data) => {
+          onSubmit(data)
+        })}
+      >
         <Input
           required
           label="Número de tarjeta"
@@ -53,8 +64,6 @@ export const PaymentData: React.FC<PaymentDataProps> = ({
         <Typography variant="caption" color="error">
           <ErrorMessage name="numerotarjeta" errors={errors} />
         </Typography>
-
-        {/* Resto de tus campos de entrada y errores */}
         <Input
           required
           label="Nombre como aparece en la tarjeta"
@@ -85,7 +94,6 @@ export const PaymentData: React.FC<PaymentDataProps> = ({
         <Typography variant="caption" color="error">
           <ErrorMessage name="codigodeseguridad" errors={errors} />
         </Typography>
-
         <StepperButtons activeStep={activeStep} handleNext={handleNext} handleBack={handleBack} />
       </form>
     </Box>

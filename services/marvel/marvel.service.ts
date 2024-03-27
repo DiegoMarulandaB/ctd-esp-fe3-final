@@ -64,6 +64,11 @@ export interface Comic {
   price: number
   oldPrice: number
   stock: number
+  images: string
+  thumbnail: {
+    path: string
+    extension: string
+  }
 }
 
 // export interface Character {

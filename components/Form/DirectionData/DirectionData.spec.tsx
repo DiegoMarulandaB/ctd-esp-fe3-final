@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /*
 * Usar la extensión better comments
 ! se modifica la importación dh- marver, por  este error  Unable to resolve path to module dado en eslint

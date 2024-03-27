@@ -86,11 +86,7 @@
       "projects": "./tsconfig.json"
     },
     "extends": [
-      "./node_modules/standard/eslintrc.json"
-    ],
-    "env": {
-      "jest": true
-    },
+      "./node_modules/standard/eslintrc.json"],
     "plugins": [
       "react"
     ],
@@ -99,15 +95,5 @@
         "version": "detect"
       }
     }
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnviroment": "node",
-    "collectCoverage": true,
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/test/",
-      "/dist/"
-    ]
   }
 }
