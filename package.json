@@ -34,7 +34,6 @@
     "element-react": "^1.4.34",
     "eslint-import-resolver-node": "^0.3.9",
     "eslint-import-resolver-typescript": "^3.6.1",
-    "jest": "^29.0.2",
     "jest-environment-jsdom": "^29.0.2",
     "mantine-form-yup-resolver": "^2.0.0",
     "md5": "^2.3.0",
@@ -57,6 +56,7 @@
     "@storybook/manager-webpack5": "^6.5.10",
     "@storybook/react": "^6.5.10",
     "@storybook/testing-library": "^0.0.13",
+    "@types/jest": "^29.5.12",
     "@types/md5": "^2.3.2",
     "@types/node": "18.7.5",
     "@types/react": "18.0.17",
@@ -73,11 +73,13 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-storybook": "^0.6.4",
     "husky": "^9.0.11",
+    "jest": "^29.7.0",
     "msw": "^0.47.0",
     "node-mocks-http": "^1.11.0",
     "prettier": "^3.2.5",
     "sb": "^6.5.10",
     "storybook-addon-next": "^1.6.7",
+    "ts-jest": "^29.1.2",
     "typescript": "^4.7.4",
     "whatwg-fetch": "^3.6.2"
   },
@@ -86,7 +88,8 @@
       "projects": "./tsconfig.json"
     },
     "extends": [
-      "./node_modules/standard/eslintrc.json"],
+      "./node_modules/standard/eslintrc.json"
+    ],
     "plugins": [
       "react"
     ],
@@ -95,5 +98,8 @@
         "version": "detect"
       }
     }
+  },
+  "jest": {
+    "preset": "ts-jest"
   }
 }
