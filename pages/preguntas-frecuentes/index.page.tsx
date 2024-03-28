@@ -94,7 +94,7 @@ const Faq: NextPage<FaqProps> = ({ data }) => {
 }
 
 export const getStaticProps: GetStaticProps<FaqProps> = async (ctx) => {
-  const urlVercel = 'https://aplicacionmarvel.vercel.app'
+  const urlVercel = 'http://localhost:3000'
   try {
     const res = await fetch(`${urlVercel}/api/preguntas-frecuentes`)
     if (!res.ok) {
