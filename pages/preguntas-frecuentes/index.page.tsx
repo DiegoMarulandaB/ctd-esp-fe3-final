@@ -78,12 +78,14 @@ const Faq: NextPage<FaqProps> = ({ data }) => {
     <>
       <Head>
         <title>Preguntas frecuentes | DH MARVEL</title>
-        <meta name="description" content="Preguntas frecuentes sobre DH MARVEL" />
+        <meta name="description" content="Preguntas frecuentes sobre DH MARVEL"
+        />
       </Head>
       <LayoutGeneral>
         <BodySingle title="Preguntas frecuentes">
           {data.map((faq) => {
-            return <SimpleAccordion key={faq.id} id={faq.id} question={faq.question} answer={faq.answer} />
+            return <SimpleAccordion key={faq.id} id={faq.id} question=
+              {faq.question} answer={faq.answer} />
           })}
         </BodySingle>
       </LayoutGeneral>
