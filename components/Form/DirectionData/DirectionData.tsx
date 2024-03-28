@@ -47,7 +47,7 @@ export const DirectionData: React.FC<DirectionDataProps> = ({
       direccion: data.direccion,
       dpto: data.dpto,
       ciudad: data.ciudad,
-      departamento: data.departamento,
+      provincia: data.provincia,
       codigopostal: data.codigopostal
     })
     handleNext()
@@ -67,13 +67,13 @@ export const DirectionData: React.FC<DirectionDataProps> = ({
         </Typography>
         <Input
           required
-          label="Departamento"
+          label="Provincia"
           control={control}
-          name="departamento"
-          error={Boolean(errors.departamento)}
+          name="provincia"
+          error={Boolean(errors.provincia)}
         />
         <Typography variant="caption" color="error">
-          <ErrorMessage name="departamento" errors={errors} />
+          <ErrorMessage name="provincia" errors={errors} />
         </Typography>
         <Input
           required

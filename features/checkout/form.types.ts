@@ -6,7 +6,7 @@ export interface FormData {
   direccion: string
   dpto: string
   ciudad: string
-  departamento: string
+  provincia: string
   codigopostal: string
 
   numerotarjeta: string

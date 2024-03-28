@@ -36,7 +36,7 @@ describe('DirectionData.spec.tsx', () => {
       const directionInput = screen.getByRole('textbox', { name: /Dirección */i })
       const direction2Input = screen.getByRole('textbox', { name: 'Dpto, piso, etc. (opcional)' })
       const cityInput = screen.getByRole('textbox', { name: /Ciudad */i })
-      const provinceInput = screen.getByRole('textbox', { name: /Departamento */i })
+      const provinceInput = screen.getByRole('textbox', { name: /Provincia */i })
       const zipCodeInput = screen.getByRole('textbox', { name: /Código postal */i })
 
       expect(directionInput).toBeInTheDocument()
@@ -65,7 +65,7 @@ describe('DirectionData.spec.tsx', () => {
         expect(screen.getByText('La ciudad es requerida')).toBeInTheDocument()
       })
       await waitFor(() => {
-        expect(screen.getByText('El departamento es requerido')).toBeInTheDocument()
+        expect(screen.getByText('La provincia es requerida')).toBeInTheDocument()
       })
       await waitFor(() => {
         expect(screen.getByText('El código postal es requerido')).toBeInTheDocument()
@@ -80,7 +80,7 @@ describe('DirectionData.spec.tsx', () => {
       const directionInput = screen.getByRole('textbox', { name: /Dirección */i })
       const direction2Input = screen.getByRole('textbox', { name: 'Dpto, piso, etc. (opcional)' })
       const cityInput = screen.getByRole('textbox', { name: /Ciudad */i })
-      const provinceInput = screen.getByRole('textbox', { name: /Departamento */i })
+      const provinceInput = screen.getByRole('textbox', { name: /Provincia*/i })
       const zipCodeInput = screen.getByRole('textbox', { name: /Código postal */i })
       const nextButton = screen.getByText(/siguiente/i)
 
@@ -95,7 +95,7 @@ describe('DirectionData.spec.tsx', () => {
 
       expect(screen.queryByText('La dirección es requerida')).not.toBeInTheDocument()
       expect(screen.queryByText('La ciudad es requerida')).not.toBeInTheDocument()
-      expect(screen.queryByText('El departamento es requerido')).not.toBeInTheDocument()
+      expect(screen.queryByText('La provincia es requerida')).not.toBeInTheDocument()
       expect(screen.queryByText('El código postal es requerido')).not.toBeInTheDocument()
     })
   })

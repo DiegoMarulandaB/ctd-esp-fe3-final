@@ -58,7 +58,7 @@ export const PaymentData: React.FC<PaymentDataProps> = ({
           required
           label="Número de tarjeta"
           control={control}
-          name="numtarjeta"
+          name="numerotarjeta"
           error={Boolean(errors.numerotarjeta)}
         />
         <Typography variant="caption" color="error">

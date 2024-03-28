@@ -7,7 +7,7 @@ export interface PersonalDataFormValues {
   direccion: string
   dpto: string
   ciudad: string
-  departamento: string
+  provincia: string
   codigopostal: string
   numerotarjeta: string
   nombretarjeta: string
@@ -34,7 +34,7 @@ export const DirectionDataSchema = yup.object({
 
   ciudad: yup.string().required('La ciudad es requerida'),
 
-  departamento: yup.string().required('El departamento es requerido'),
+  provincia: yup.string().required('La provincia es requerida'),
 
   codigopostal: yup
     .string()

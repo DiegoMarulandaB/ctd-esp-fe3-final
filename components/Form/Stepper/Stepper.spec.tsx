@@ -102,7 +102,7 @@ describe('Stepper.spec.tsx', () => {
       await userEvent.type(screen.getByRole('textbox', { name: /Dirección */i }), 'calle 123')
       await userEvent.type(screen.getByRole('textbox', { name: 'Dpto, piso, etc. (opcional)' }), 'B')
       await userEvent.type(screen.getByRole('textbox', { name: /Ciudad */i }), 'Bogotá')
-      await userEvent.type(screen.getByRole('textbox', { name: /Departamento */i }), 'Cundinamarca')
+      await userEvent.type(screen.getByRole('textbox', { name: /Provincia */i }), 'Cundinamarca')
       await userEvent.type(screen.getByRole('textbox', { name: /Código postal */i }), '110110')
 
       userEvent.click(await screen.findByText(/siguiente/i))

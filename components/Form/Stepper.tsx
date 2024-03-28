@@ -36,7 +36,7 @@ export default function HorizontalLinearStepper ({ title, image, price }: Steppe
     direccion: '',
     dpto: '',
     ciudad: '',
-    departamento: '',
+    provincia: '',
     codigopostal: '',
     numerotarjeta: '',
     nombretarjeta: '',
@@ -63,7 +63,7 @@ export default function HorizontalLinearStepper ({ title, image, price }: Steppe
           address1: formData.direccion,
           address2: formData.dpto,
           city: formData.ciudad,
-          state: formData.departamento,
+          state: formData.provincia,
           zipCode: formData.codigopostal
         }
       },
