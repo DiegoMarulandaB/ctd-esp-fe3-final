@@ -57,6 +57,34 @@ export const getComics = async (offset?: number, limit?: number): Promise<Comic[
   return data.data.results.filter((result): result is Comic => 'title' in result)
 }
 
+// !original
+// export const getComic = async (comicId: number): Promise<Comic | null> => {
+//   const data = await fetchApi(`comics/${comicId}`)
+//   const results = data.data.results
+
+//   if (results.length > 0) {
+//     const comic = results[0]
+//     if ('price' in comic && 'oldPrice' in comic && 'stock' in comic) {
+//       // Si las propiedades están presentes, entonces sabemos que es un Comic
+//       if (`${comic.id}`.endsWith('0')) {
+//         comic.price = 48
+//         comic.oldPrice = 48
+//         comic.stock = 0
+//       } else {
+//         comic.price = 72
+//         comic.oldPrice = 87
+//         comic.stock = 2
+//       }
+//       return comic
+//     } else {
+//       return null
+//     }
+//   } else {
+//     return null
+//   }
+// }
+
+//! copia
 export const getComic = async (comicId: number): Promise<Comic | null> => {
   const data = await fetchApi(`comics/${comicId}`)
   const results = data.data.results
