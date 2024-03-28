@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /*
 * Usar la extensión better comments
 ! se modifica la importación dh- marvel, por  este error  Unable to resolve path to module dado en eslint
@@ -56,8 +57,15 @@ export default function CardComic ({
           <span style={{ textDecoration: 'line-through' }}>${oldPrice}</span>
           <span style={{ marginLeft: '0.5rem' }}>${price}</span>
         </Typography>
-        <Typography variant="body1" color="text.secondary">
+        {/* <Typography variant="body1" color="text.secondary">
           {description.length === 0 ? 'Sin descripción disponible' : description}
+        </Typography> */}
+        <Typography variant="body1" color="text.secondary">
+          {description
+            ? description.length === 0
+              ? 'Sin descripción disponible'
+              : description
+            : 'Sin descripción disponible'}
         </Typography>
       </CardContent>
       <CardActions>
