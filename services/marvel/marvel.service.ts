@@ -38,9 +38,9 @@ export interface MarvelApiResponse<T> {
   }
 }
 
-// const MARVEL_API_URL: string = process.env.NEXT_PUBLIC_MARVEL_API_URL ?? ''
+// const MARVEL_API_URL = process.env.MARVEL_API_URL
 
-const MARVEL_API_URL = process.env.MARVEL_API_URL
+const MARVEL_API_URL = process.env.MARVEL_API_URL ?? ''
 
 const fetchApi = async (endpoint: string, urlParams?: string): Promise<MarvelApiResponse<Comic | Character>> => {
   const authString = generateAuthenticationString()
