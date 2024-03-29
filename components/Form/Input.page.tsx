@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /*
 * Usar la extensión better comments
 ! se modifica la importación dh- marvel, por  este error  Unable to resolve path to module dado en eslint
@@ -8,7 +10,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material'
 import React, { type FC } from 'react'
 
 export type Props = {
-  control: Control<FieldValues> // Corregido a Control<FieldValues>
+  control: Control<FieldValues>
   name: string
   rules?: Partial<UseControllerProps<FieldValues, string>['rules']>
 } & TextFieldProps;

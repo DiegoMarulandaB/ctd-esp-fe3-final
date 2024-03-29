@@ -7,7 +7,7 @@
 
 import * as React from 'react'
 import { Box, Typography } from '@mui/material'
-import Input from '../Input'
+import Input from '../Input.page'
 import { useForm } from 'react-hook-form'
 import { StepperButtons } from '../StepperButtons'
 import { PaymentDataSchema } from '../schema.form'
@@ -40,10 +40,6 @@ export const PaymentData: React.FC<PaymentDataProps> = ({
     },
     resolver: yupResolver(PaymentDataSchema)
   })
-
-  // const handleSubmitForm = async (data: any)  => {
-  //   await onSubmit(data)
-  // }
 
   return (
     <Box>

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
@@ -11,37 +13,26 @@ import CardCheckout from '../../components/Cards/CardCheckout'
 import Stepper from '../../components/Form/Stepper'
 import BodySingle from '../../components/layouts/body/single/body-single'
 import LayoutCheckout from '../../components/layouts/layout-checkout'
-import { getComic, type Comic } from '../../services/marvel/marvel.service'
+import { getComic } from '../../services/marvel/marvel.service'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 
-function Checkout (): JSX.Element {
+function Checkout () {
   const router = useRouter()
   const { comic } = router.query
-  const [comicData, setComicData] = useState<Comic | null>(null) // Cambio en el tipo de estado
+  const [comicData, setComicData] = useState<any>()
 
   useEffect(() => {
-    if (comic !== undefined && comic !== null) {
-      const id = parseInt(comic as any)
-      getComic(id).then((data: Comic | null) => {
-        // Cambio en el tipo del argumento
-        if (data !== null) {
-          setComicData(data)
-        } else {
-          // Manejar el caso de que no se encuentre el cómic
-          router.push('/')
-        }
+    if (comic) {
+      const id = parseInt(comic as string)
+      getComic(id).then((data: any) => {
+        setComicData(data)
       })
     } else {
       router.push('/')
     }
   }, [comic, router])
-
-  // Verificación adicional para evitar errores al acceder a propiedades de comicData cuando es null
-  if (comicData === null) {
-    return <div>Loading...</div>
-  }
 
   return (
     <>
@@ -57,15 +48,15 @@ function Checkout (): JSX.Element {
               alignItems={'center'}
             >
               <CardCheckout
-                title={comicData.title ?? ''}
-                images={`${comicData.thumbnail?.path}.${comicData.thumbnail?.extension}`}
-                price={comicData.price ?? 0}
-                id={comicData.id ?? 0}
+                title={comicData?.title}
+                image={`${comicData?.thumbnail?.path}.${comicData?.thumbnail?.extension}`}
+                price={comicData?.price}
+                id={comicData?.id}
               />
               <Stepper
-                title={comicData.title ?? ''}
-                image={`${comicData.thumbnail?.path}.${comicData.thumbnail?.extension}`}
-                price={comicData.price ?? 0}
+                title={comicData?.title}
+                image={`${comicData?.images[0]?.path}.${comicData?.images[0]?.extension}`}
+                price={comicData?.price}
               />
             </Stack>
           </Box>

@@ -1,88 +1,60 @@
-import type { GetServerSideProps, NextPage } from 'next'
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable react/prop-types */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+
+import type { NextPage } from 'next'
 import Head from 'next/head'
 import BodySingle from '../components/layouts/body/single/body-single'
 import { getComics } from '../services/marvel/marvel.service'
-import React, { useEffect, useState } from 'react'
 import ResponsiveGrid from '../components/Grid'
 import PaginationOutlined from '../components/Pagination'
 import LayoutGeneral from '../components/layouts/layout-general'
-import type { MarvelApiResponse } from '../services/marvel/marvel.service'
+import React, { useEffect, useState } from 'react'
 
 const INITIAL_OFFSET = 0
 const INITIAL_LIMIT = 12
 
-interface Comic {
-  id: number
-  title: string
+export async function getServerSideProps () {
+  const response = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
+  return {
+    props: {
+      initialComics: response.data.results,
+      limit: response.data.count,
+      initialTotal: response.data.total
+    }
+  }
 }
 
-interface IndexProps {
-  initialComics: Comic[]
+interface indexProps {
+  initialComics: any
   initialTotal: number
 }
 
-//! bueno
-export const getServerSideProps: GetServerSideProps<IndexProps> = async () => {
-  const response: Comic[] = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
-  const marvelApiResponse: MarvelApiResponse<Comic> = {
-    code: 200,
-    status: 'OK',
-    data: {
-      results: response,
-      total: response.length
-    }
-  }
-  return {
-    props: {
-      initialComics: marvelApiResponse.data.results,
-      initialTotal: marvelApiResponse.data.total
-    }
-  }
-}
-
-const Index: NextPage<IndexProps> = ({ initialComics, initialTotal }: IndexProps) => {
-  const [comics, setComics] = useState<Comic[]>(initialComics)
-  const [page, setPage] = useState<number>(1)
-  const [total, setTotal] = useState<number>(initialTotal)
+const Index: NextPage<indexProps> = ({ initialComics, initialTotal }) => {
+  const [comics, setComics] = useState(initialComics)
+  const [page, setPage] = useState(1)
+  const [total, settotal] = useState(initialTotal)
   const LIMIT = 12
 
-  const handleChange = (event: React.ChangeEvent<unknown>, value: number): void => {
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
   }
 
-  async function deleteCookie (): Promise<void> {
+  async function deleteCookie () {
     await fetch('/api/cookie')
   }
 
   useEffect(() => {
-    const fetchDataAndCleanUp = async (): Promise<void> => {
-      try {
-        const offset = LIMIT * (page - 1)
-        const response: Comic[] = await getComics(offset, LIMIT)
-        const marvelApiResponse: MarvelApiResponse<Comic> = {
-          code: 200,
-          status: 'OK',
-          data: {
-            results: response,
-            total: response.length
-          }
-        }
-        setComics(marvelApiResponse.data.results)
-        setTotal(marvelApiResponse.data.total)
-      } catch (error) {
-        console.error('Error fetching comics:', error)
-      }
-      try {
-        await deleteCookie()
-        localStorage.clear()
-      } catch (error) {
-        console.error('Error deleting cookie:', error)
-      }
-    }
-
-    fetchDataAndCleanUp().catch((error) => {
-      console.error('Error in fetchDataAndCleanUp:', error)
+    const offset = LIMIT * (page - 1)
+    getComics(offset, LIMIT).then((response) => {
+      setComics(response?.data?.results)
+      settotal(response?.data?.total)
     })
+
+    deleteCookie()
+    localStorage.clear()
   }, [page])
 
   return (
@@ -92,7 +64,7 @@ const Index: NextPage<IndexProps> = ({ initialComics, initialTotal }: IndexProps
         <meta name="description" content="Marvel Store Sitio Web" />
       </Head>
       <LayoutGeneral>
-        <BodySingle title={'Aplicación Marvel'}>
+        <BodySingle title={''}>
           <PaginationOutlined count={Math.round(total / 12)} page={page} handleChange={handleChange} />
           <ResponsiveGrid data={comics} />
           <PaginationOutlined count={Math.round(total / 12)} page={page} handleChange={handleChange} />

@@ -3,7 +3,7 @@
 ! se modifica la importación dh- marvel, por  este error  Unable to resolve path to module dado en eslint
 */
 import React from 'react'
-import CharacterDetails from './[id]'
+import CharacterDetails from './[id].page'
 import { render, screen } from '@testing-library/react'
 
 describe('Personajes', () => {

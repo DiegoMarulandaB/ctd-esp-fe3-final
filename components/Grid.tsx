@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /*
 * Usar la extensión better comments
 ! se modifica la importación dh- marvel, por  este error  Unable to resolve path to module dado en eslint
@@ -5,7 +7,7 @@
 
 import React from 'react'
 import { Box, Grid } from '@mui/material'
-import CardHome from '../components/Cards/CardHome'
+import CardHome from './Cards/CardHome'
 
 interface Item {
   id: number

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /*
 * Usar la extensión better comments
@@ -20,6 +22,7 @@ interface Character {
   id: string
   name: string
   role: string
+  characters: string
   // Agrega aquí cualquier otra propiedad que tenga un personaje
 }
 

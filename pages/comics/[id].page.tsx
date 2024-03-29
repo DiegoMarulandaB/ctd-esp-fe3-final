@@ -17,7 +17,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const response = await getComics()
     const paths = response.map(({ id }: { id: number }) => ({
-      // Eliminar .data de response
       params: {
         id: id?.toString()
       }

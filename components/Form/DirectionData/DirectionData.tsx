@@ -11,7 +11,7 @@ import { StepperButtons } from '../StepperButtons'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as React from 'react'
-import Input from '../Input'
+import Input from '../Input.page'
 import { ErrorMessage } from '@hookform/error-message'
 
 //! any
@@ -65,13 +65,7 @@ export const DirectionData: React.FC<DirectionDataProps> = ({
         <Typography variant="caption" color="error">
           <ErrorMessage name="ciudad" errors={errors} />
         </Typography>
-        <Input
-          required
-          label="Provincia"
-          control={control}
-          name="provincia"
-          error={Boolean(errors.provincia)}
-        />
+        <Input required label="Provincia" control={control} name="provincia" error={Boolean(errors.provincia)} />
         <Typography variant="caption" color="error">
           <ErrorMessage name="provincia" errors={errors} />
         </Typography>

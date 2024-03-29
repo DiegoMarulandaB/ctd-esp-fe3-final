@@ -11,14 +11,14 @@ import { StepperButtons } from '../StepperButtons'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as React from 'react'
-import Input from '../Input'
+import Input from '../Input.page'
 import { ErrorMessage } from '@hookform/error-message'
 
 //! any
 interface FormPersonalDataProps {
   activeStep: number
   handleNext: () => void
-  handleBack: () => void // Agregar handleBack a las props
+  handleBack: () => void
   setFormData: React.Dispatch<React.SetStateAction<any>>
   formData: any
 }

@@ -6,7 +6,7 @@ import React from 'react'
 import { type NextRouter } from 'next/router'
 import { render, screen } from '@testing-library/react'
 import { RouterContext } from 'next/dist/shared/lib/router-context'
-import Checkout from '../../pages/checkout'
+import Checkout from './index.page'
 
 const createMockRouter = (router: Partial<NextRouter>): NextRouter => {
   return {

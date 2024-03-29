@@ -4,7 +4,7 @@
 */
 
 import React from 'react'
-import PurchaseConfirmation from '../../pages/confirmacion-compra'
+import PurchaseConfirmation from './index.page'
 import { render, screen } from '@testing-library/react'
 
 describe('Confirmación compra', () => {
