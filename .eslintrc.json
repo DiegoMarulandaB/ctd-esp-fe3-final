@@ -10,7 +10,7 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
-     "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended"
     // "plugin:import/resolver"
   ],
   "parserOptions": {
@@ -27,9 +27,9 @@
     "semi": ["error", "never"],
     "@typescript-eslint/semi": "off",
     "no-unexpected-multiline": "error",
-     "@typescript-eslint/strict-boolean-expressions": "off",
-    //  "assertionStyle": [2, "as"],
-        "objectLiteralTypeAssertions": "never",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "assertionStyle": [0, "as"],
+    "objectLiteralTypeAssertions": "never",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }]
   },
   "settings": {

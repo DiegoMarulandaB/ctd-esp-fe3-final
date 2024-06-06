@@ -1,7 +1,9 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import StepperFormulario from '../checkout/[id].page';
-import { Result } from 'dh-marvel/features/types/comics.types';
+import { Result } from '../../features/types/comics.types';
 import userEvent from '@testing-library/user-event';
+import { describe, it, expect } from '@jest/globals';
+import React from 'react';
 
 const emptyComic = {
   id: 0,
