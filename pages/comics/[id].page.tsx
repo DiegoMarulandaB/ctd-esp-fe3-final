@@ -1,20 +1,20 @@
-import { Divider } from '@mui/material';
-import { Box } from '@mui/system';
-import LayoutGeneral from '../../components/layouts/layout-general';
-import { Comics } from '../../features/types/comics.types';
-import { getComic, getComics } from 'dh-marvel/services/marvel/marvel.service';
-import Link from 'next/link';
-import type { GetStaticProps, NextPage, GetStaticPaths } from 'next';
-import { Result } from 'dh-marvel/features/types/comics.types';
-import React from 'react';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Typography from '@mui/material/Typography';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+/* eslint-disable react/prop-types */
+import { Divider, Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
+import { Box } from '@mui/system'
+import LayoutGeneral from '../../components/layouts/layout-general'
+import { type Comics, type Result } from '../../features/checkout/comics.types'
+import { getComic, getComics } from '../../services/marvel/marvel.service'
+import Link from 'next/link'
+import type { GetStaticProps, NextPage, GetStaticPaths } from 'next'
+// import { type Result } from '../../features/types/comics.types'
+import React from 'react'
+import Button from '@mui/material/Button'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import Typography from '@mui/material/Typography'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 
 interface Comicprops {
   comic: Result;
@@ -139,32 +139,32 @@ const ComicsDetail: NextPage<Comicprops> = ({ comic }) => {
         </Card>
       </LayoutGeneral>
     </>
-  );
-};
+  )
+}
 
-export default ComicsDetail;
+export default ComicsDetail
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await getComics();
+  const response = await getComics()
 
   const paths = response.data.results.map(({ id }: { id: any }) => ({
     params: {
       id: id?.toString(),
     },
-  }));
+  }))
 
   return {
     paths,
     fallback: 'blocking',
-  };
-};
+  }
+}
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const idParsed = parseInt(params?.id as string);
-  const comic: Comics = await getComic(idParsed);
+  const idParsed = parseInt(params?.id as string)
+  const comic: Comics = await getComic(idParsed)
   return {
     props: {
       comic,
     },
-  };
-};
+  }
+}

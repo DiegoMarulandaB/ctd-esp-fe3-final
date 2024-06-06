@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { Stepper, Step, StepLabel, Alert, Snackbar } from '@mui/material'
 import LayoutCheckout from '../../components/layouts/layout-checkout'
-import type { GetStaticProps, NextPage, GetStaticPaths } from 'next'
-import { type Result } from '../../features/types/comics.types'
-import { getComic, getComics } from '../../services/marvel/marvel.service'
-import { Comics } from '../../features/types/comics.types'
+// import type { GetStaticProps, NextPage, GetStaticPaths } from 'next'
+import type { GetServerSideProps } from 'next'
+// import { getComic } from '../../services/marvel/marvel.service'
+import { type Result } from '../../features/checkout/comics.types'
+
+import { getComic } from '../../services/marvel/marvel.service'
+// import { Comics } from '../../features/types/comics.types'
 import { Box } from '@mui/system'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -19,12 +22,12 @@ import { type FormData } from '../../features/checkout/form.types'
 import router from 'next/router'
 
 interface CheckoutProps {
-  comic: Result
+  comic: Result;
 }
 
 const steps = ['Datos Personales', 'Dirección de entrega', 'Datos del pago']
 
-const StepperFormulario: NextPage<CheckoutProps> = ({ comic }) => {
+const StepperFormulario: React.FC<CheckoutProps> = ({ comic }) => {
   const [activeStep, setActiveStep] = useState(0)
   const [error, setError] = useState('')
 
@@ -40,14 +43,14 @@ const StepperFormulario: NextPage<CheckoutProps> = ({ comic }) => {
     numerotarjeta: '',
     nombretarjeta: '',
     fechaexpiracion: '',
-    cv: ''
+    cv: '',
   })
 
-  const handleNext = () => {
+  const handleNext = (): void => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1)
   }
 
-  const handleBack = () => {
+  const handleBack = (): void => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
 
@@ -62,20 +65,20 @@ const StepperFormulario: NextPage<CheckoutProps> = ({ comic }) => {
           address2: formData.departamento,
           city: formData.ciudad,
           state: formData.provincia,
-          zipCode: formData.codigopostal
-        }
+          zipCode: formData.codigopostal,
+        },
       },
       card: {
         number: data.numerotarjeta,
         cvc: data.cv,
         expDate: data.fechaexpiracion,
-        nameOnCard: data.nombretarjeta
+        nameOnCard: data.nombretarjeta,
       },
       order: {
         name: comic.title,
         image: `${comic.thumbnail.path}.${comic.thumbnail.extension}`,
-        price: comic.price
-      }
+        price: comic.price,
+      },
     }
     console.log('Data enviada al finalizar compra', sentFormData)
 
@@ -83,20 +86,20 @@ const StepperFormulario: NextPage<CheckoutProps> = ({ comic }) => {
       const response = await fetch('/api/checkout', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(sentFormData)
+        body: JSON.stringify(sentFormData),
       })
 
       if (!response.ok) {
-        const errorData = await response.json()
+        const errorData: { message: string } = await response.json()
         throw new Error(errorData.message)
       }
 
       const responseData = await response.json()
       localStorage.setItem('purchase-data', JSON.stringify(responseData))
       await router.push({
-        pathname: '/confirmacion-compra'
+        pathname: '/confirmacion-compra',
       })
     } catch (error) {
       if (error instanceof Error) {
@@ -115,7 +118,7 @@ const StepperFormulario: NextPage<CheckoutProps> = ({ comic }) => {
             display: 'flex',
             marginTop: '20px',
             boxShadow: '0 2px 8px 0 #c1c9d7, 0 -2px 8px 0 #cce1e9',
-            borderRadius: '12px'
+            borderRadius: '12px',
           }}
         >
           <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
@@ -128,7 +131,7 @@ const StepperFormulario: NextPage<CheckoutProps> = ({ comic }) => {
                   sx={{
                     borderRadius: '12px',
                     height: 350,
-                    objectFit: 'cover'
+                    objectFit: 'cover',
                   }}
                 />
               </Box>
@@ -149,15 +152,15 @@ const StepperFormulario: NextPage<CheckoutProps> = ({ comic }) => {
                 justifyContent: 'center',
                 width: '50%',
                 flexDirection: 'column',
-                marginBottom: '10px'
+                marginBottom: '10px',
               }}
             >
-              {comic.stock == 0 && (
+              {comic.stock === 0 && (
                 <Typography variant="h6" color="error">
                   No tenemos stock disponible
                 </Typography>
               )}
-              {comic.stock != 0 && (
+              {comic.stock !== 0 && (
                 <>
                   <Stepper activeStep={activeStep}>
                     {steps.map((label, index) => {
@@ -201,13 +204,28 @@ const StepperFormulario: NextPage<CheckoutProps> = ({ comic }) => {
 
 export default StepperFormulario
 
-export async function getServerSideProps (context: { query: { id: any } }) {
+interface ComicProps {
+  comic: Result;
+}
+
+export const getServerSideProps: GetServerSideProps<ComicProps> = async (context) => {
   const { id } = context.query
-  const res = await getComic(id)
+  const comicId = typeof id === 'string' ? parseInt(id, 10) : undefined
+
+  if (typeof comicId === 'number') {
+    const res = await getComic(comicId)
+
+    return {
+      props: {
+        comic: res,
+      },
+    }
+  }
 
   return {
     props: {
-      comic: res
-    }
+      comic: null,
+    },
   }
 }
+

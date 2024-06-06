@@ -4,4 +4,4 @@ const comics = [
     }
 ]
 
-export default comics;
+export default comics

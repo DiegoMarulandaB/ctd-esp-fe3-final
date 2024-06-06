@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Typography, Button } from '@mui/material'
 import { DirectionDataSchema } from '../schema.form'
 import { useForm } from 'react-hook-form'
@@ -9,37 +7,59 @@ import ControlledInput from '../FormInput'
 import { ErrorMessage } from '@hookform/error-message'
 
 export interface DeliveryDataProps {
-  handleNext: () => void
-  handleBack: () => void
-  setFormData: (data: any) => void
-  formData: any
+  handleNext: () => void;
+  handleBack: () => void;
+  setFormData: (data: any) => void;
+  formData: any;
 }
 
-export const DeliveryDataForm: React.FC<DeliveryDataProps> = ({ handleNext, handleBack, formData, setFormData }: DeliveryDataProps) => {
-  const { handleSubmit, formState: { errors }, control } = useForm({
+export const DeliveryDataForm: React.FC<DeliveryDataProps> = ({
+  handleNext,
+  handleBack,
+  formData,
+  setFormData,
+}: DeliveryDataProps) => {
+  const {
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm({
     defaultValues: {
-      ...formData
+      ...formData,
     },
-    resolver: yupResolver(DirectionDataSchema)
+    resolver: yupResolver(DirectionDataSchema),
   })
 
-  const onSubmit = (data: any): void => {
+  const onSubmit = async (data: any): Promise<void> => {
     setFormData({
       ...formData,
       direccion: data.direccion,
       departamento: data.departamento,
       ciudad: data.ciudad,
       provincia: data.provincia,
-      codigopostal: data.codigopostal
+      codigopostal: data.codigopostal,
     })
     console.log('Formulario direccion:', data)
     handleNext()
   }
 
+  const handleFormSubmit = (e: React.FormEvent): void => {
+    e.preventDefault()
+    handleSubmit(onSubmit)().catch((error) => {
+      console.error('Error en el envío del formulario:', error)
+    })
+  }
+
   return (
     <Box sx={{ marginTop: '20px' }}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <ControlledInput required label="Dirección" control={control} name="direccion" error={Boolean(errors.direccion)} />
+      <form onSubmit={handleFormSubmit}>
+        <ControlledInput
+          required
+          label="Dirección"
+          control={control}
+          name="direccion"
+          error={Boolean(errors.direccion)}
+        />
         <Typography variant="caption" color="error">
           <ErrorMessage name="direccion" errors={errors} />
         </Typography>
@@ -69,8 +89,12 @@ export const DeliveryDataForm: React.FC<DeliveryDataProps> = ({ handleNext, hand
           <ErrorMessage name="codigopostal" errors={errors} />
         </Typography>
         <Box mt={2}>
-          <Button variant="contained" onClick={handleBack} sx={{ marginRight: '10px' }}>Regresar</Button>
-          <Button variant="contained" color="primary" type="submit">Continuar</Button>
+          <Button variant="contained" onClick={handleBack} sx={{ marginRight: '10px' }}>
+            Regresar
+          </Button>
+          <Button variant="contained" color="primary" type="submit">
+            Continuar
+          </Button>
         </Box>
       </form>
     </Box>

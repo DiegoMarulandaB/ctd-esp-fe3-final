@@ -1,22 +1,22 @@
-import React, { useEffect } from 'react';
-import LayoutCheckout from '../../components/layouts/layout-checkout';
-import { CheckoutInput } from '../../features/checkout/checkout.types';
-import BodySingle from '../../components/layouts/body/single/body-single';
-import { Card, CardContent, CardHeader, Typography, Box, Grid, Divider, CardMedia } from '@mui/material';
-import { CheckCircle } from '@mui/icons-material';
+import React, { useEffect } from 'react'
+import LayoutCheckout from '../../components/layouts/layout-checkout'
+import { type CheckoutInput } from '../../features/checkout/checkout.types'
+import BodySingle from '../../components/layouts/body/single/body-single'
+import { Card, CardContent, CardHeader, Typography, Box, Grid, Divider, CardMedia } from '@mui/material'
+import { CheckCircle } from '@mui/icons-material'
 
 const ConfirmaCompra: React.FC = () => {
-  const [order, setOrder] = React.useState<CheckoutInput | undefined>();
+  const [order, setOrder] = React.useState<CheckoutInput | undefined>()
 
   useEffect(() => {
-    const item = localStorage.getItem('purchase-data');
+    const item = localStorage.getItem('purchase-data')
     if (item !== null) {
-      const finalData: CheckoutInput | undefined = JSON.parse(item).data;
+      const finalData: CheckoutInput | undefined = JSON.parse(item).data
       if (typeof finalData === 'object' && finalData !== null) {
-        setOrder(finalData);
+        setOrder(finalData)
       }
     }
-  }, []);
+  }, [])
 
   return (
     <LayoutCheckout>
@@ -59,7 +59,7 @@ const ConfirmaCompra: React.FC = () => {
         </Grid>
       </BodySingle>
     </LayoutCheckout>
-  );
-};
+  )
+}
 
-export default ConfirmaCompra;
+export default ConfirmaCompra

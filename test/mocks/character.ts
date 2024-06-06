@@ -4,4 +4,4 @@ const character =
     }
 
 
-export default character;
+export default character

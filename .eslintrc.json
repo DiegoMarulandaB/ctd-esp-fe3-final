@@ -10,7 +10,9 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
+    "plugin:@next/next/recommended",
+    "prettier"
   ],
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -18,16 +20,32 @@
     "parser": "@typescript-eslint/parser",
     "project": "./tsconfig.json"
   },
-  "plugins": ["react", "import"],
+  "plugins": ["@typescript-eslint","react", "import"],
   "rules": {
+    // nueva
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    // fin
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-explicit-any": "off",
     "semi": ["error", "never"],
     "@typescript-eslint/semi": "off",
     "no-unexpected-multiline": "error",
     "@typescript-eslint/strict-boolean-expressions": "off",
-    "objectLiteralTypeAssertions": "1",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }]
+    "@typescript-eslint/consistent-type-assertions": [
+      "warn",
+      {
+        "assertionStyle": "as",
+        "objectLiteralTypeAssertions": "never"
+      }
+    ],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
+    "react/no-unknown-property": [
+      "error",
+      {
+        "ignore": ["global"]
+      }
+    ]
   },
   "settings": {
     "react": {

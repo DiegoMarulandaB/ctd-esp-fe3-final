@@ -4,4 +4,4 @@ const comicWithoutStock =
     }
 
 
-export default comicWithoutStock;
+export default comicWithoutStock

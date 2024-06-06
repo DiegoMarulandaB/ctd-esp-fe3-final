@@ -1,15 +1,17 @@
+/* eslint-disable react/prop-types */
 import { getFaqs } from '../../services/faqs/getFaqs'
-import { GetStaticProps, NextPage } from 'next'
-import { FaqsType } from '../../components/faqs/faqsData';
-import LayoutGeneral from '../../components/layouts/layout-general';
-import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import BodySingle from '../../components/layouts/body/single/body-single';
+import { type GetStaticProps, type NextPage } from 'next'
+import { type FaqsType } from '../../components/faqs/faqsData'
+import LayoutGeneral from '../../components/layouts/layout-general'
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import BodySingle from '../../components/layouts/body/single/body-single'
 
 interface FaqPageProps {
     faqs: FaqsType[],
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const FaqsPage: NextPage<FaqPageProps> = ({ faqs }) => {
     return (
         <LayoutGeneral>
@@ -30,12 +32,10 @@ const FaqsPage: NextPage<FaqPageProps> = ({ faqs }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-    const faqs = await getFaqs();
+    const faqs = await getFaqs()
     return {
         props: {
             faqs,
         }
-    };
+    }
 }
-
-export default FaqsPage;

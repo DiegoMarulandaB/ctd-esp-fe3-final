@@ -4,4 +4,4 @@ const comicsWithOffsetAndLimit = [
     }
 ]
 
-export default comicsWithOffsetAndLimit;
+export default comicsWithOffsetAndLimit

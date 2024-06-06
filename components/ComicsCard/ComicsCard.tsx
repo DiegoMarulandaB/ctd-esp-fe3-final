@@ -1,22 +1,21 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import InfoIcon from '@mui/icons-material/Info';
-import { type Comics } from '../../features/types/comics.types';
-import { Box, Grid } from '@mui/material';
-import Link from 'next/link';
+import Card from '@mui/material/Card'
+import CardActions from '@mui/material/CardActions'
+import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import InfoIcon from '@mui/icons-material/Info'
+import { type Comics } from '../../features/checkout/comics.types'
+import { Box, Grid } from '@mui/material'
+import Link from 'next/link'
+import React from 'react'
 
 interface ComicsCardProps {
   comics: Comics;
 }
 
-export default function ComicsCard({ comics }: ComicsCardProps) {
+const ComicsCard: React.FC<ComicsCardProps> = ({ comics }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
@@ -34,13 +33,13 @@ export default function ComicsCard({ comics }: ComicsCardProps) {
                 </Typography>
               </CardContent>
               <CardActions sx={{ justifyContent: 'center' }}>
-                <Link href={`/checkout/${comic.id}`}>
-                  <Button variant="contained" startIcon={<ShoppingCartIcon />}>
+                <Link href={`/checkout/${comic.id}`} passHref>
+                  <Button variant="contained" startIcon={<ShoppingCartIcon />} component="a">
                     Comprar
                   </Button>
                 </Link>
-                <Link href={`/comics/${comic.id}`}>
-                  <Button variant="outlined" startIcon={<InfoIcon />}>
+                <Link href={`/comics/${comic.id}`} passHref>
+                  <Button variant="outlined" startIcon={<InfoIcon />} component="a">
                     Ver Detalle
                   </Button>
                 </Link>
@@ -50,5 +49,7 @@ export default function ComicsCard({ comics }: ComicsCardProps) {
         ))}
       </Grid>
     </Box>
-  );
+  )
 }
+
+export default ComicsCard
