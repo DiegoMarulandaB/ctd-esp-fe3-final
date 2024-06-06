@@ -12,7 +12,7 @@ interface FaqPageProps {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const FaqsPage: NextPage<FaqPageProps> = ({ faqs }) => {
+export const FaqsPage: NextPage<FaqPageProps> = ({ faqs }) => {
     return (
         <LayoutGeneral>
             <BodySingle title='Preguntas Frecuentes (FAQ)'>
