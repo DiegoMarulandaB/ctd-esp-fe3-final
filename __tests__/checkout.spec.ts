@@ -5,8 +5,8 @@ import handleCheckout, {
   validCard,
   withoutAuthorizationCard,
   withoutFundsCard,
-} from '../../pages/api/checkout';
-import { CheckoutInput } from '../../features/checkout/checkout.types';
+} from '../pages/api/checkout';
+import { CheckoutInput } from '../features/checkout/checkout.types';
 import {
   ERROR_CARD_DATA_INCORRECT,
   ERROR_CARD_WITHOUT_AUTHORIZATION,
@@ -14,7 +14,7 @@ import {
   ERROR_INCORRECT_ADDRESS,
   ERROR_METHOD_NOT_ALLOWED,
   ERROR_SERVER,
-} from '../../services/checkout/checkout.errors';
+} from '../services/checkout/checkout.errors';
 
 describe('Checkout', () => {
   describe('when sending a valid POST, customer and card data', () => {
