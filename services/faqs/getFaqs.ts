@@ -8,7 +8,6 @@ export const getFaqs = async () => {
     return data
 }
 
-// ! correciones mias con chat
 
 // export const getFaqs = async (): Promise<any> => {
 //   const response = await fetch('http://localhost:3000/api/preguntas-frecuentes')
