@@ -1,78 +1,170 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/*
-* Usar la extensión better comments
-! se modifica la importación dh- marvel, por  este error  Unable to resolve path to module dado en eslint
-*/
+import { Divider } from '@mui/material';
+import { Box } from '@mui/system';
+import LayoutGeneral from '../../components/layouts/layout-general';
+import { Comics } from '../../features/types/comics.types';
+import { getComic, getComics } from 'dh-marvel/services/marvel/marvel.service';
+import Link from 'next/link';
+import type { GetStaticProps, NextPage, GetStaticPaths } from 'next';
+import { Result } from 'dh-marvel/features/types/comics.types';
+import React from 'react';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Typography from '@mui/material/Typography';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-import React from 'react'
-import { Box } from '@mui/material'
-import CardComic from '../../components/Cards/CardComic'
-import BodySingle from '../../components/layouts/body/single/body-single'
-import LayoutGeneral from '../../components/layouts/layout-general'
-import { getCharacterByComic, getComic, getComics } from '../../services/marvel/marvel.service'
-import { type GetStaticPaths, type GetStaticProps } from 'next'
-import Head from 'next/head'
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  try {
-    const response = await getComics()
-    const paths = response.map(({ id }: { id: number }) => ({
-      params: {
-        id: id?.toString()
-      }
-    }))
-    return {
-      paths,
-      fallback: 'blocking'
-    }
-  } catch (error) {
-    console.error('Error fetching paths:', error)
-    return {
-      paths: [],
-      fallback: 'blocking'
-    }
-  }
+interface Comicprops {
+  comic: Result;
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const id = parseInt(params?.id as string)
-  const comic = await getComic(id)
-  const characters = await getCharacterByComic(id)
+const ComicsDetail: NextPage<Comicprops> = ({ comic }) => {
+  return (
+    <>
+      <LayoutGeneral>
+        <Card
+          elevation={0}
+          sx={{
+            display: 'flex',
+            padding: 2,
+            borderRadius: '16px',
+            marginTop: '15px',
+            marginBottom: '15px',
+            boxShadow: '0 2px 8px 0 #c1c9d7, 0 -2px 8px 0 #cce1e9',
+            width: '60%',
+          }}
+        >
+          <CardMedia
+            component="img"
+            image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+            alt={comic.title}
+            sx={{
+              minWidth: '35%',
+              maxWidth: '35%',
+              flexShrink: 0,
+              backgroundColor: 'grey.200',
+              borderRadius: '12px',
+              objectFit: 'cover',
+              height: '100%',
+              marginRight: '10px',
+            }}
+          />
+          <CardContent sx={{ flex: 1, paddingLeft: 2 }}>
+            <Box mb={1}>
+              <Box
+                component="h3"
+                sx={{
+                  fontSize: 17,
+                  fontWeight: 'bold',
+                  letterSpacing: '0.5px',
+                  marginBottom: 0,
+                  marginRight: 1.5,
+                  display: 'inline-block',
+                }}
+              >
+                {comic.title}
+              </Box>
+            </Box>
+            <Box component="p" sx={{ fontSize: 14, color: 'grey.500', mb: '1.275rem' }}>
+              {comic.description ? comic.description : 'No hay descripción'}
+            </Box>
+            <Divider light sx={{ mt: 1, mb: 1 }} />
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Accordion sx={{ width: '100%' }}>
+                <AccordionSummary id="panel-header" aria-controls="panel-content" expandIcon={<ExpandMoreIcon />}>
+                  Personajes
+                </AccordionSummary>
+                <AccordionDetails sx={{ flexDirection: 'column' }}>
+                  {comic.characters?.available === 0 ? (
+                    <Typography>No hay personajes disponibles</Typography>
+                  ) : (
+                    <>
+                      {comic.characters.items?.map((character, index: number) => (
+                        <Typography key={index}>
+                          <Link href={`/personajes/${character.resourceURI.split('/').pop()}`}>{character.name}</Link>
+                        </Typography>
+                      ))}
+                    </>
+                  )}
+                </AccordionDetails>
+              </Accordion>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '20px' }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  marginTop: '20px',
+                  gap: '10px',
+                }}
+              >
+                {comic.price && <Typography variant="h4">${comic.price}</Typography>}
+                {comic.oldPrice && comic.oldPrice !== comic.price && (
+                  <>
+                    <Typography variant="h5" sx={{ textDecoration: 'line-through', color: 'darkgrey' }}>
+                      ${comic.oldPrice}
+                    </Typography>
+                    <Typography variant="h6" sx={{ fontWeight: 'bold', color: 'navy' }}>
+                      -{Math.round(((comic.oldPrice - comic.price) / comic.oldPrice) * 100)}% 🏷️
+                    </Typography>
+                  </>
+                )}
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  marginTop: '20px',
+                  width: '50%',
+                }}
+              >
+                {comic.stock > 0 ? (
+                  <Link href={`/checkout/${comic.id}`}>
+                    <Button variant="contained" color="primary" startIcon={<ShoppingCartIcon />}>
+                      Comprar
+                    </Button>
+                  </Link>
+                ) : (
+                  <Button variant="contained" disabled>
+                    Sin Stock
+                  </Button>
+                )}
+              </Box>
+            </Box>
+          </CardContent>
+        </Card>
+      </LayoutGeneral>
+    </>
+  );
+};
 
+export default ComicsDetail;
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const response = await getComics();
+
+  const paths = response.data.results.map(({ id }: { id: any }) => ({
+    params: {
+      id: id?.toString(),
+    },
+  }));
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const idParsed = parseInt(params?.id as string);
+  const comic: Comics = await getComic(idParsed);
   return {
     props: {
       comic,
-      characters
     },
-    revalidate: 10
-  }
-}
-
-function ComicDetails ({ comic, characters }: { comic: any, characters: any }): React.ReactNode {
-  return (
-    <>
-      <Head>
-        <title>{comic?.title} | DH MARVEL</title>
-        <meta name="description" content={`${comic?.title}: página detalle de cómic `} />
-      </Head>
-      <LayoutGeneral>
-        <Box sx={{ marginBottom: '1rem' }}>
-          <BodySingle title="Detalle cómic">
-            <CardComic
-              title={comic?.title}
-              description={comic?.description}
-              image={`${comic?.thumbnail?.path}.${comic?.thumbnail?.extension}`}
-              id={comic?.id}
-              price={comic?.price}
-              oldPrice={comic?.oldPrice}
-              stock={comic?.stock}
-              characters={characters}
-            />
-          </BodySingle>
-        </Box>
-      </LayoutGeneral>
-    </>
-  )
-}
-
-export default ComicDetails
+  };
+};

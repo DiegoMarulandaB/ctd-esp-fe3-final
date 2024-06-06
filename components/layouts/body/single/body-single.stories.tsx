@@ -1,17 +1,13 @@
-/* eslint-disable @typescript-eslint/consistent-type-assertions */
-/*
-* Usar la extensión better comments
-! se modifica la importación dh- marver, por  este error  Unable to resolve path to module dado en eslint
-*/
-
+// /* eslint-disable @typescript-eslint/no-explicit-any */
 // import React from 'react'
-// import BodySingle from '../../../../components/layouts/body/single/body-single'
 // import { type ComponentStory, type ComponentMeta } from '@storybook/react'
+// import BodySingle from '../../../../components/layouts/body/single/body-single'
 
 // export default {
 //   title: 'Layout/Body/BodySingle',
 //   component: BodySingle,
-//   argTypes: {}
+//   argTypes: {
+//   }
 // } as ComponentMeta<typeof BodySingle>
 
 // const Template: ComponentStory<typeof BodySingle> = (args: any) => <BodySingle {...args} />
@@ -22,23 +18,23 @@
 //   // containerProps: {sx: {backgroundColor:'#faa' }}
 // }
 
-// refactor
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
-import BodySingle from '../../../../components/layouts/body/single/body-single'
 import { type ComponentStory, type ComponentMeta } from '@storybook/react'
+import BodySingle from '../../../../components/layouts/body/single/body-single'
 
 export default {
   title: 'Layout/Body/BodySingle',
   component: BodySingle,
-  argTypes: {}
+  argTypes: {
+  }
 } as ComponentMeta<typeof BodySingle>
 
 const Template: ComponentStory<typeof BodySingle> = (args) => <BodySingle {...args} />
 
 export const Primary = Template.bind({})
-const PrimaryArgs = {
+Primary.args = {
   title: 'Single body'
   // containerProps: {sx: {backgroundColor:'#faa' }}
 }
-Primary.args = PrimaryArgs

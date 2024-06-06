@@ -1,10 +1,14 @@
-import { type NextApiRequest, type NextApiResponse } from 'next'
-import { faqsData } from '../../components/faqs/faqsData'
+import { FaqsType, faqsData } from '../../components/faqs/faqsData';
+import type {NextApiRequest, NextApiResponse} from 'next';
 
-export default function handler (req: NextApiRequest, res: NextApiResponse): void {
-  if (req.method === 'GET') {
-    res.status(200).json(faqsData)
-  } else {
-    res.status(400).json({ error: 'Método no permitido' })
-  }
+type Data = FaqsType[] | {message: string};
+
+export default function handler(req: NextApiRequest, res: NextApiResponse<Data>){
+
+    if (req.method === 'GET') {
+        res.status(200).json(faqsData)
+    } else {
+        res.status(405).json({ message: 'Metodo no permitido' });
+    }
+    
 }

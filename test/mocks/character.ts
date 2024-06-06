@@ -1,6 +1,7 @@
 const character =
     {
-      id: 1
+        id: 1
     }
 
-export default character
+
+export default character;

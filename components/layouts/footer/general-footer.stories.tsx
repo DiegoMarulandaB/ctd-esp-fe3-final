@@ -1,37 +1,38 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/consistent-type-assertions */
-/*
-* Usar la extensión better comments
-! se modifica la importación dh- marver, por  este error  Unable to resolve path to module dado en eslint
-*/
-
 // import React from 'react'
-// import GeneralFooter from '../../../components/layouts/footer/general-footer.component'
 // import { type ComponentStory, type ComponentMeta } from '@storybook/react'
+// import GeneralFooter from '../../../components/layouts/footer/general-footer.component'
 
 // export default {
 //   title: 'Layout/Footer/GeneralFooter',
 //   component: GeneralFooter,
-//   argTypes: {}
+//   argTypes: {
+//   }
 // } as ComponentMeta<typeof GeneralFooter>
 
 // const Template: ComponentStory<typeof GeneralFooter> = (args: any) => <GeneralFooter {...args} />
 
 // export const Primary = Template.bind({})
-// Primary.args = {}
+// Primary.args = {
+// }
 
-// refactor
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import { ComponentStory, ComponentMeta } from '@storybook/react'
 import GeneralFooter from '../../../components/layouts/footer/general-footer.component'
-import { type ComponentStory, type ComponentMeta } from '@storybook/react'
 
-export default {
+const componentMeta: ComponentMeta<typeof GeneralFooter> = {
   title: 'Layout/Footer/GeneralFooter',
   component: GeneralFooter,
-  argTypes: {}
-} as ComponentMeta<typeof GeneralFooter>
+  argTypes: {
+  }
+}
 
-const Template: ComponentStory<typeof GeneralFooter> = (args: unknown) => <GeneralFooter {...(args as any)} />
+export default componentMeta
+
+const Template: ComponentStory<typeof GeneralFooter> = (args: any) => <GeneralFooter {...args} />
 
 export const Primary = Template.bind({})
-Primary.args = {}
+Primary.args = {
+}

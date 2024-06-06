@@ -9,7 +9,8 @@
     "plugin:react/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+     "plugin:react-hooks/recommended"
     // "plugin:import/resolver"
   ],
   "parserOptions": {
@@ -20,12 +21,15 @@
   },
   "plugins": ["react", "import"],
   "rules": {
-    "@typescript-eslint/indent": ["error", 2],
+    // "@typescript-eslint/indent": ["error", 2],
     "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-explicit-any": "off",
     "semi": ["error", "never"],
     "@typescript-eslint/semi": "off",
     "no-unexpected-multiline": "error",
+     "@typescript-eslint/strict-boolean-expressions": "off",
+     "assertionStyle": "as",
+        "objectLiteralTypeAssertions": "never",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }]
   },
   "settings": {

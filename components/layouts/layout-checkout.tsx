@@ -1,26 +1,22 @@
-/*
-* Usar la extensión better comments
-! se modifica la importación dh- marvel, por  este error  Unable to resolve path to module dado en eslint
-*/
+import * as React from 'react';
+import {FC, PropsWithChildren} from "react";
+import {Stack} from "@mui/material";
+import Box from "@mui/material/Box";
+import GeneralHeader from "../../components/layouts/header/general-header.component";
+import GeneralFooter from "../../components/layouts/footer/general-footer.component";
 
-import GeneralHeader from '../../components/layouts/header/general-header.component'
-import GeneralFooter from '../../components/layouts/footer/general-footer.component'
-import Box from '@mui/material/Box'
-import * as React from 'react'
-import { type FC, type PropsWithChildren } from 'react'
-import { Stack } from '@mui/material'
 
-const LayoutCheckout: FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
-  return (
-    <>
-      <Stack direction={'column'} height={'100%'}>
-        <GeneralHeader variant={'simple'} />
-        <Box display={'flex'} flexGrow={1}>
-          {children}
-        </Box>
-        <GeneralFooter />
-      </Stack>
-    </>
-  )
-}
-export default LayoutCheckout
+const LayoutCheckout: FC<PropsWithChildren> = ({children}: PropsWithChildren) => {
+
+    return (<>
+            <Stack direction={"column"} height={'100%'}>
+                <GeneralHeader variant={'simple'}/>
+                <Box display={'flex'} flexGrow={1}>
+                    {children}
+                </Box>
+                <GeneralFooter />
+            </Stack>
+        </>
+    );
+};
+export default LayoutCheckout;

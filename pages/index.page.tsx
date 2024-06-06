@@ -1,77 +1,74 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable react/prop-types */
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { useState } from 'react';
+import type { GetStaticProps, NextPage } from 'next';
+import Head from 'next/head';
+import BodySingle from '../components/layouts/body/single/body-single';
+import LayoutGeneral from '../components/layouts/layout-general';
+import { getComics } from '../services/marvel/marvel.service';
+import { Box, Grid, CircularProgress } from '@mui/material';
+import { Comics } from '../features/types/comics.types';
+import ComicsCard from '../components/ComicsCard/ComicsCard';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import BodySingle from '../components/layouts/body/single/body-single'
-import { getComics } from '../services/marvel/marvel.service'
-import ResponsiveGrid from '../components/Grid'
-import PaginationOutlined from '../components/Pagination'
-import LayoutGeneral from '../components/layouts/layout-general'
-import React, { useEffect, useState } from 'react'
-
-const INITIAL_OFFSET = 0
-const INITIAL_LIMIT = 12
-
-export async function getServerSideProps () {
-  const response = await getComics(INITIAL_OFFSET, INITIAL_LIMIT)
+interface ComicsPageProps {
+  initialComics: Comics;
+}
+export const getStaticProps: GetStaticProps = async () => {
+  const initialComics = await getComics(0, 12);
   return {
     props: {
-      initialComics: response.data.results,
-      limit: response.data.count,
-      initialTotal: response.data.total
-    }
-  }
-}
+      initialComics,
+    },
+  };
+};
 
-interface indexProps {
-  initialComics: any
-  initialTotal: number
-}
+const Index: NextPage<ComicsPageProps> = ({ initialComics }) => {
+  const [comics, setComics] = useState(initialComics);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
-const Index: NextPage<indexProps> = ({ initialComics, initialTotal }) => {
-  const [comics, setComics] = useState(initialComics)
-  const [page, setPage] = useState(1)
-  const [total, settotal] = useState(initialTotal)
-  const LIMIT = 12
-
-  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value)
-  }
-
-  async function deleteCookie () {
-    await fetch('/api/cookie')
-  }
-
-  useEffect(() => {
-    const offset = LIMIT * (page - 1)
-    getComics(offset, LIMIT).then((response) => {
-      setComics(response?.data?.results)
-      settotal(response?.data?.total)
-    })
-
-    deleteCookie()
-    localStorage.clear()
-  }, [page])
+  const handlePageChange = async (event: React.ChangeEvent<unknown>, page: number) => {
+    setIsLoading(true);
+    const offsetValue = (page - 1) * 12;
+    const newComicsData = await getComics(offsetValue, 12);
+    setComics(newComicsData);
+    setCurrentPage(page);
+    setIsLoading(false);
+  };
 
   return (
     <>
       <Head>
-        <title>Inicio | DH MARVEL</title>
-        <meta name="description" content="Marvel Store Sitio Web" />
+        <title>Aplicación Marvel</title>
+        <meta
+          name="description"
+          content="Final work of the frontend subject 3 of the Frontend specialization in Digital House"
+        />
+        <link rel="icon" href="./favicon.ico" />
+        <meta property="og:image" content="<generated>" />
+        <meta property="og:image:type" content="<generated>" />
+        <meta property="og:image:width" content="<generated>" />
+        <meta property="og:image:height" content="<generated>" />
       </Head>
+
       <LayoutGeneral>
-        <BodySingle title={''}>
-          <PaginationOutlined count={Math.round(total / 12)} page={page} handleChange={handleChange} />
-          <ResponsiveGrid data={comics} />
-          <PaginationOutlined count={Math.round(total / 12)} page={page} handleChange={handleChange} />
+        <BodySingle title={'Home'}>
+          {isLoading ? (
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
+              <CircularProgress />
+            </Box>
+          ) : (
+            <>
+              <ComicsCard comics={comics} />
+              <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '10px' }}>
+                <Pagination count={10} page={currentPage} onChange={handlePageChange} color="primary" />
+              </Box>
+            </>
+          )}
         </BodySingle>
       </LayoutGeneral>
     </>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
