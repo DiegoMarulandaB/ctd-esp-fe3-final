@@ -1,4 +1,4 @@
-import { Html, Head, Main, NextScript } from 'next/document';
+import { Html, Head, Main, NextScript } from 'next/document'
 
 const Document: React.FC = () => {
   return (
@@ -9,7 +9,6 @@ const Document: React.FC = () => {
           name="description"
           content="Final work of the frontend subject 3 of the Frontend specialization in Digital House"
         />
-        {/* favicon */}
         <link rel="icon" href="./favicon.ico" />
       </Head>
       <body style={{ height: '100%' }}>
@@ -17,7 +16,7 @@ const Document: React.FC = () => {
         <NextScript />
       </body>
     </Html>
-  );
-};
+  )
+}
 
-export default Document;
+export default Document
