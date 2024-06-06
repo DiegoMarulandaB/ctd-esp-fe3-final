@@ -28,7 +28,7 @@
     "@typescript-eslint/semi": "off",
     "no-unexpected-multiline": "error",
      "@typescript-eslint/strict-boolean-expressions": "off",
-     "assertionStyle": "as",
+     "assertionStyle": [2, "as"],
         "objectLiteralTypeAssertions": "never",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }]
   },

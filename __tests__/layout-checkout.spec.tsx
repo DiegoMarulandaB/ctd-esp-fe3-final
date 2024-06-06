@@ -1,6 +1,6 @@
 import {render, screen} from '@testing-library/react'
 import {HeaderProps} from "@storybook/mdx1-csf/dist/ts/stories/Header";
-import LayoutCheckout from "../../components/layouts/layout-checkout";
+import LayoutCheckout from "../components/layouts/layout-checkout";
 
 const mockHeaderProps = jest.fn();
 jest.mock('dh-marvel/components/layouts/header/general-header.component', () => (props: HeaderProps) => {

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import GeneralFooter from '../../../components/layouts/footer/general-footer.component'
+import GeneralFooter from '../components/layouts/footer/general-footer.component'
 import React from 'react'
 
 describe('GeneralFooter', () => {
