@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { CheckoutInput } from '../../features/checkout/types/checkout.types';
+import { CheckoutInput } from '../../features/checkout/checkout.types';
 import {
   ERROR_CARD_DATA_INCORRECT,
   ERROR_CARD_WITHOUT_AUTHORIZATION,

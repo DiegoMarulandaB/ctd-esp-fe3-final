@@ -15,7 +15,7 @@ import PersonalDataForm from '../../components/Forms/PersonalData/PersonalDataFo
 import { PersonalDataFormValues } from '../../components/Forms/schema.form';
 import { DeliveryDataForm } from '../../components/Forms/DeliveryData/DeliveryDataForm';
 import { PaymentDataForm } from '../../components/Forms/PaymentData/PaymentDataForm';
-import { type FormData } from '../../features/checkout/types/form.types';
+import { type FormData } from '../../features/checkout/form.types';
 import router from 'next/router';
 
 interface CheckoutProps {

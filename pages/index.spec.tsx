@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import { render, screen } from '@testing-library/react';
 import Index from '../pages/index.page';
 
@@ -24,9 +25,9 @@ describe('IndexPage', () => {
         },
       };
 
-    //   render(<Index initialComics={initialComics} />);
-    //   const title = screen.getByText('Sample');
-    //   expect(title).toBeInTheDocument();
+      //   render(<Index initialComics={initialComics} />);
+      //   const title = screen.getByText('Sample');
+      //   expect(title).toBeInTheDocument();
     });
   });
 });

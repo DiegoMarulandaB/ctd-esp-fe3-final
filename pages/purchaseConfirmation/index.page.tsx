@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import LayoutCheckout from '../../components/layouts/layout-checkout';
-import { CheckoutInput } from '../../features/checkout/types/checkout.types';
+import { CheckoutInput } from '../../features/checkout/checkout.types';
 import BodySingle from '../../components/layouts/body/single/body-single';
 import { Card, CardContent, CardHeader, Typography, Box, Grid, Divider, CardMedia } from '@mui/material';
 import { CheckCircle } from '@mui/icons-material';
