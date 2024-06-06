@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import type { GetStaticProps, NextPage, GetStaticPaths } from 'next'
 import { type Result } from '../../features/checkout/characters.types'
 import { getCharacter, getComics } from '../../services/marvel/marvel.service'
@@ -97,3 +98,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   }
 }
+

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { getFaqs } from '../../services/faqs/getFaqs'
 import { type GetStaticProps, type NextPage } from 'next'
 import { type FaqsType } from '../../components/faqs/faqsData'

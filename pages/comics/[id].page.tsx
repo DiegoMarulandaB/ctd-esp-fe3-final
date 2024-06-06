@@ -2,7 +2,7 @@
 import { Divider, Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
 import { Box } from '@mui/system'
 import LayoutGeneral from '../../components/layouts/layout-general'
-import { type Comics, type Result } from '../../features/checkout/comics.types'
+import { type Result } from '../../features/comics.types'
 import { getComic, getComics } from '../../services/marvel/marvel.service'
 import Link from 'next/link'
 import type { GetStaticProps, NextPage, GetStaticPaths } from 'next'
@@ -161,7 +161,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const idParsed = parseInt(params?.id as string)
-  const comic: Comics = await getComic(idParsed)
+  const comic = await getComic(idParsed)
+
+  if (!comic) {
+    return {
+      notFound: true,
+    }
+  }
+
   return {
     props: {
       comic,

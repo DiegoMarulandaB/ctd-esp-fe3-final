@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable react/prop-types */
+// ! Camila
+
 import React, { useState } from 'react'
 import { Stepper, Step, StepLabel, Alert, Snackbar } from '@mui/material'
 import LayoutCheckout from '../../components/layouts/layout-checkout'
-// import type { GetStaticProps, NextPage, GetStaticPaths } from 'next'
-import type { GetServerSideProps } from 'next'
-// import { getComic } from '../../services/marvel/marvel.service'
-import { type Result } from '../../features/checkout/comics.types'
-
+import type { NextPage } from 'next'
+// import { type Result , Comics } from 'dh-marvel/features/comics.types'
+import { type Result } from '../../features/comics.types'
 import { getComic } from '../../services/marvel/marvel.service'
-// import { Comics } from '../../features/types/comics.types'
 import { Box } from '@mui/system'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -27,7 +29,7 @@ interface CheckoutProps {
 
 const steps = ['Datos Personales', 'Dirección de entrega', 'Datos del pago']
 
-const StepperFormulario: React.FC<CheckoutProps> = ({ comic }) => {
+const StepperFormulario: NextPage<CheckoutProps> = ({ comic }) => {
   const [activeStep, setActiveStep] = useState(0)
   const [error, setError] = useState('')
 
@@ -46,11 +48,11 @@ const StepperFormulario: React.FC<CheckoutProps> = ({ comic }) => {
     cv: '',
   })
 
-  const handleNext = (): void => {
+  const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1)
   }
 
-  const handleBack = (): void => {
+  const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
 
@@ -92,7 +94,7 @@ const StepperFormulario: React.FC<CheckoutProps> = ({ comic }) => {
       })
 
       if (!response.ok) {
-        const errorData: { message: string } = await response.json()
+        const errorData = await response.json()
         throw new Error(errorData.message)
       }
 
@@ -126,8 +128,8 @@ const StepperFormulario: React.FC<CheckoutProps> = ({ comic }) => {
               <Box mr={2} sx={{ minWidth: '35%', maxWidth: '35%', flexShrink: 0 }}>
                 <CardMedia
                   component="img"
-                  image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-                  alt={comic.title}
+                  image={`${comic?.thumbnail?.path}.${comic?.thumbnail?.extension}`}
+                  alt={comic?.title || ''}
                   sx={{
                     borderRadius: '12px',
                     height: 350,
@@ -136,13 +138,17 @@ const StepperFormulario: React.FC<CheckoutProps> = ({ comic }) => {
                 />
               </Box>
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <Typography variant="h5" sx={{ flexGrow: 1 }}>
-                  {comic.title}
-                </Typography>
-                <Typography variant="h6" sx={{ color: 'grey.700', marginTop: '10px' }}>
-                  Total
-                </Typography>
-                <Typography variant="h4">${comic.price}</Typography>
+                {comic && (
+                  <>
+                    <Typography variant="h5" sx={{ flexGrow: 1 }}>
+                      {comic.title}
+                    </Typography>
+                    <Typography variant="h6" sx={{ color: 'grey.700', marginTop: '10px' }}>
+                      Total
+                    </Typography>
+                    <Typography variant="h4">${comic.price}</Typography>
+                  </>
+                )}
               </Box>
             </Box>
             <Box
@@ -155,12 +161,13 @@ const StepperFormulario: React.FC<CheckoutProps> = ({ comic }) => {
                 marginBottom: '10px',
               }}
             >
-              {comic.stock === 0 && (
+              {comic && comic.stock === 0 && (
                 <Typography variant="h6" color="error">
                   No tenemos stock disponible
                 </Typography>
               )}
-              {comic.stock !== 0 && (
+
+              {comic && comic.stock !== 0 && (
                 <>
                   <Stepper activeStep={activeStep}>
                     {steps.map((label, index) => {
@@ -204,28 +211,13 @@ const StepperFormulario: React.FC<CheckoutProps> = ({ comic }) => {
 
 export default StepperFormulario
 
-interface ComicProps {
-  comic: Result;
-}
-
-export const getServerSideProps: GetServerSideProps<ComicProps> = async (context) => {
+export async function getServerSideProps(context: { query: { id: any } }) {
   const { id } = context.query
-  const comicId = typeof id === 'string' ? parseInt(id, 10) : undefined
-
-  if (typeof comicId === 'number') {
-    const res = await getComic(comicId)
-
-    return {
-      props: {
-        comic: res,
-      },
-    }
-  }
+  const res = await getComic(id)
 
   return {
     props: {
-      comic: null,
+      comic: res,
     },
   }
 }
-

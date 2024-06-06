@@ -17,38 +17,39 @@ export interface Data {
 }
 
 export interface Result {
-  id: number
-  digitalId: number
-  title: string
-  issueNumber: number
-  variantDescription: string
-  description: string
-  modified: string
-  isbn: string
-  upc: string
-  diamondCode: string
-  ean: string
-  issn: string
-  format: string
-  pageCount: number
-  textObjects: any[]
-  resourceURI: string
-  urls: Url[]
-  series: Series
-  variants: Variant[]
-  collections: any[]
-  collectedIssues: any[]
-  dates: Date[]
-  prices: Price[]
-  thumbnail: Thumbnail
-  images: any[]
-  creators: Creators
-  characters: Characters
-  stories: Stories
-  events: Events
-  price: number
-  oldPrice: number
-  stock: number
+  id: number;
+  digitalId: number;
+  title: string;
+  issueNumber: number;
+  variantDescription: string;
+  description: string;
+  modified: string;
+  isbn: string;
+  upc: string;
+  diamondCode: string;
+  ean: string;
+  issn: string;
+  format: string;
+  pageCount: number;
+  textObjects: any[];
+  resourceURI: string;
+  urls: Url[];
+  series: Series;
+  variants: Variant[];
+  collections: any[];
+  collectedIssues: any[];
+  dates: Date[];
+  prices: Price[];
+  thumbnail: Thumbnail;
+  images: any[];
+  creators: Creators;
+  characters: Characters;
+  stories: Stories;
+  events: Events;
+  price: number;
+  oldPrice: number;
+  stock: number;
+  comic: string
 }
 
 export interface Url {
