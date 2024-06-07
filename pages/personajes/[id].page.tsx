@@ -3,11 +3,7 @@ import type { GetStaticProps, NextPage, GetStaticPaths } from 'next'
 import { type Result } from '../../features/checkout/characters.types'
 import { getCharacter, getComics } from '../../services/marvel/marvel.service'
 import LayoutGeneral from '../../components/layouts/layout-general'
-import { Divider } from '@mui/material'
-import { Box } from '@mui/system'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
+import { Divider, Card, CardContent, CardMedia, Box } from '@mui/material'
 import React from 'react'
 
 interface CharacterProps {
@@ -77,10 +73,8 @@ export default CharacterDetail
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const response = await getComics()
-    const paths = response.data.results.map(({ id }: { id: any }) => ({
-      params: {
-        id: id?.toString(),
-      },
+    const paths = response.data.results.map(({ id }: { id: number }) => ({
+      params: { id: id.toString() },
     }))
     return {
       paths,
@@ -97,25 +91,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    const idParsed = parseInt(params?.id as string)
-    const response = await getCharacter(idParsed)
-    const character = response.data.results[0]
+   const idParsed = params?.id as string
+   const response = await getCharacter(idParsed)
+    const character = response?.data?.results[0]
 
     if (!character) {
-      return {
-        notFound: true,
-      }
+      return { notFound: true }
     }
 
     return {
-      props: {
-        character,
-      },
+      props: { character },
     }
   } catch (error) {
     console.error('Error fetching character:', error)
-    return {
-      notFound: true,
-    }
+    return { notFound: true }
   }
 }

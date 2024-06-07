@@ -144,12 +144,13 @@ const ComicsDetail: NextPage<Comicprops> = ({ comic }) => {
 
 export default ComicsDetail
 
+
 export const getStaticPaths: GetStaticPaths = async () => {
   const response = await getComics()
 
-  const paths = response.data.results.map(({ id }: { id: any }) => ({
+  const paths = response.data.results.map(({ id }: { id: number }) => ({
     params: {
-      id: id?.toString(),
+      id: id.toString(),
     },
   }))
 
@@ -159,9 +160,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
+
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const idParsed = parseInt(params?.id as string)
-  const comic = await getComic(idParsed)
+  const idParsed = typeof params?.id === 'string' ? parseInt(params.id, 10) : null
+
+  if (idParsed === null || isNaN(idParsed)) {
+    return {
+      notFound: true,
+    }
+  }
+
+ const comic = await getComic(idParsed.toString())
 
   if (!comic) {
     return {
@@ -175,3 +184,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   }
 }
+

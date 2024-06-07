@@ -1,38 +1,47 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable react/prop-types */
-
 import React, { useState } from 'react'
-import { Stepper, Step, StepLabel, Alert, Snackbar } from '@mui/material'
+import {
+  Stepper,
+  Step,
+  StepLabel,
+  Alert,
+  Snackbar,
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+} from '@mui/material'
 import LayoutCheckout from '../../components/layouts/layout-checkout'
-import type { NextPage } from 'next'
-// import { type Result , Comics } from 'dh-marvel/features/comics.types'
-import { type Result } from '../../features/comics.types'
+import { type NextPage, type GetServerSideProps } from 'next'
 import { getComic } from '../../services/marvel/marvel.service'
-import { Box } from '@mui/system'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
-import Typography from '@mui/material/Typography'
 import BodySingle from '../../components/layouts/body/single/body-single'
 import PersonalDataForm from '../../components/Forms/PersonalData/PersonalDataForm'
 import { type PersonalDataFormValues } from '../../components/Forms/schema.form'
 import { DeliveryDataForm } from '../../components/Forms/DeliveryData/DeliveryDataForm'
 import { PaymentDataForm } from '../../components/Forms/PaymentData/PaymentDataForm'
 import { type FormData } from '../../features/checkout/form.types'
-import router from 'next/router'
+import { useRouter } from 'next/router'
 
 interface CheckoutProps {
-  comic: Result;
+  comic: {
+    title: string;
+    thumbnail: {
+      path: string;
+      extension: string;
+    };
+    price: number;
+    stock: number;
+  };
 }
 
 const steps = ['Datos Personales', 'Dirección de entrega', 'Datos del pago']
 
 const StepperFormulario: NextPage<CheckoutProps> = ({ comic }) => {
-  const [activeStep, setActiveStep] = useState(0)
-  const [error, setError] = useState('')
-
-  const [formData, setFormData] = React.useState<PersonalDataFormValues>({
+  const [activeStep, setActiveStep] = useState<number>(0)
+  const [error, setError] = useState<string | null>(null)
+  const [formData, setFormData] = useState<PersonalDataFormValues>({
     nombre: '',
     apellido: '',
     email: '',
@@ -46,13 +55,14 @@ const StepperFormulario: NextPage<CheckoutProps> = ({ comic }) => {
     fechaexpiracion: '',
     cv: '',
   })
+  const router = useRouter()
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1)
+  const handleNext = (): void => {
+    setActiveStep((prev) => prev + 1)
   }
 
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1)
+  const handleBack = (): void => {
+    setActiveStep((prev) => prev - 1)
   }
 
   const onSubmit = async (data: FormData): Promise<void> => {
@@ -81,7 +91,6 @@ const StepperFormulario: NextPage<CheckoutProps> = ({ comic }) => {
         price: comic.price,
       },
     }
-    console.log('Data enviada al finalizar compra', sentFormData)
 
     try {
       const response = await fetch('/api/checkout', {
@@ -99,15 +108,9 @@ const StepperFormulario: NextPage<CheckoutProps> = ({ comic }) => {
 
       const responseData = await response.json()
       localStorage.setItem('purchase-data', JSON.stringify(responseData))
-      await router.push({
-        pathname: '/confirmacion-compra',
-      })
+      await router.push('/confirmacion-compra')
     } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message)
-      } else {
-        setError('Error desconocido')
-      }
+      setError(error instanceof Error ? error.message : 'Error desconocido')
     }
   }
 
@@ -165,19 +168,14 @@ const StepperFormulario: NextPage<CheckoutProps> = ({ comic }) => {
                   No tenemos stock disponible
                 </Typography>
               )}
-
               {comic && comic.stock !== 0 && (
                 <>
                   <Stepper activeStep={activeStep}>
-                    {steps.map((label, index) => {
-                      const stepProps: { completed?: boolean } = {}
-
-                      return (
-                        <Step key={label} {...stepProps}>
-                          <StepLabel>{label}</StepLabel>
-                        </Step>
-                      )
-                    })}
+                    {steps.map((label) => (
+                      <Step key={label}>
+                        <StepLabel>{label}</StepLabel>
+                      </Step>
+                    ))}
                   </Stepper>
                   {activeStep === 0 && (
                     <PersonalDataForm formData={formData} setFormData={setFormData} handleNext={handleNext} />
@@ -193,8 +191,14 @@ const StepperFormulario: NextPage<CheckoutProps> = ({ comic }) => {
                   {activeStep === 2 && (
                     <PaymentDataForm formData={formData} handleBack={handleBack} onSubmit={onSubmit} />
                   )}
-                  {error !== '' && (
-                    <Snackbar open={true} autoHideDuration={6000}>
+                  {error && (
+                    <Snackbar
+                      open
+                      autoHideDuration={6000}
+                      onClose={() => {
+                        setError(null)
+                      }}
+                    >
                       <Alert severity="error">{error}</Alert>
                     </Snackbar>
                   )}
@@ -210,13 +214,16 @@ const StepperFormulario: NextPage<CheckoutProps> = ({ comic }) => {
 
 export default StepperFormulario
 
-export async function getServerSideProps(context: { query: { id: any } }) {
-  const { id } = context.query
-  const res = await getComic(id)
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+ const { id } = context.params || {}
+ const comic = await getComic(id as string)
 
   return {
     props: {
-      comic: res,
+      comic,
     },
   }
 }
+
+
