@@ -2,7 +2,7 @@
 // const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 export const getFaqs = async () => {
-    const response = await fetch('http://localhost:3000/api/preguntas-frecuentes')
+    const response = await fetch('https://aplicacionmarvel.vercel.app/api/preguntas-frecuentes')
     // const response = await fetch(`${API_URL}/api/preguntas-frecuentes`);
     const data = await response.json()
     return data

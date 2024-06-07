@@ -35,7 +35,7 @@ export const getStaticProps: GetStaticProps = async () => {
       props: {
         faqs,
       },
-      revalidate: 120,
+      revalidate: 60,
     }
   } catch (error) {
     console.error('Error fetching FAQs:', error)
