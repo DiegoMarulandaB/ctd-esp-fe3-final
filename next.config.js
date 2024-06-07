@@ -15,11 +15,11 @@ const nextConfig = {
   pageExtensions: ['page.tsx', 'page.ts', 'route.tsx', 'route.ts', 'tsx'],
   webpack: (config, { isServer }) => {
     if (!isServer) {
-      config.externals = config.externals || [];
-      config.externals.push('jest');
+      config.externals = config.externals || []
+      config.externals.push('jest')
     }
-    return config;
+    return config
   },
-};
+}
 
 module.exports = nextConfig

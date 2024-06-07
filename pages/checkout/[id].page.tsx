@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable react/prop-types */
-// ! Camila
 
 import React, { useState } from 'react'
 import { Stepper, Step, StepLabel, Alert, Snackbar } from '@mui/material'
