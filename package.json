@@ -80,7 +80,7 @@
     "msw": "^0.47.0",
     "node-mocks-http": "^1.11.0",
     "prettier": "^3.2.5",
-    "sb": "^6.5.10",
+    "sb": "^8.5.5",
     "storybook-addon-next": "^1.6.7",
     "ts-jest": "^29.1.4",
     "typescript": "^4.7.4",
