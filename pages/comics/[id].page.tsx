@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import { Divider, Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
-import { Box } from '@mui/system'
+import { Divider, Accordion, AccordionDetails, AccordionSummary, Box } from '@mui/material'
+// import { Box } from '@mui/system'
 import LayoutGeneral from '../../components/layouts/layout-general'
 import { type Result } from '../../features/comics.types'
 import { getComic, getComics } from '../../services/marvel/marvel.service'
